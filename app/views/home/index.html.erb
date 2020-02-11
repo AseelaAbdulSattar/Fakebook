@@ -1,6 +1,22 @@
 <h1>Home</h1>
 <p>Create New Post</p>
 <p>My Posts</p>
+<%= link_to 'Send Friend Request', new_friendship_path(current_user) %>
 <p>Friends</p>
 <p>Friend Requests</p>
+
+-------- This Part is only for help------------
+<h2>All Users</h2>
+<table>
+    <tr>
+      <th>Name</th>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      <th>Email</th>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    </table>
+
+<%= render partial: "user", collection: @users%>
 
