@@ -1,22 +1,36 @@
-<h1>Home</h1>
-<p>Create New Post</p>
-<p>My Posts</p>
-<%= link_to 'Send Friend Request', new_friendship_path(current_user) %>
-<p>Friends</p>
-<p>Friend Requests</p>
+<table>
+  <tr>
+    <h1>Home</h1>
+    <td><%= link_to 'Send Friend Request', new_friendship_path %></td>
+  </tr>
+  <tr>
+    <td><%= link_to 'My Friends', friendships_path(current_user) %></td>
+  </tr>  
+  <tr>
+    <td><%= link_to 'Accept or Reject Request', friendships_path(current_user)%></td>
+  </tr>
+  </tr>
+</table>
+
+
+<%if false%>
+  <%= link_to render(:partial => 'friendships/accept'), friendships_path(current_user) %><br>
+  <%= link_to render(:partial => 'shared/logo'), root_url %>
+<%end%>
+
 
 -------- This Part is only for help------------
 <h2>All Users</h2>
 <table>
-    <tr>
-      <th>Name</th>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-      <th>Email</th>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    </table>
+  <tr>
+    <th>Name</th>
+    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    <th>Email</th>
+    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+</table>
 
 <%= render partial: "user", collection: @users%>
 

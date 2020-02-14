@@ -1,0 +1,18 @@
+<h1>You can send a Friend Request</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th></th>
+  </tr>
+ 
+  <% @users.each do |user| %>
+  
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= link_to 'Add as Friend' , friendships_path(friend_id: user), method: :post %></td>
+    </tr>
+    
+  <% end %>
+</table>

@@ -1,0 +1,22 @@
+<%if false%> <%= greeting.inspect%> <%end%>
+<table>
+  <tr>
+    <th>Name</th>
+    <th><hr/></th>
+    <th>Email</th>
+    <th><hr/></th>
+    <th>id</th>
+    
+  </tr>
+  <tr>
+      <td><%= friend.name%></td>
+      <td><hr/></td>
+      <td><%= friend.email%></td>
+      <td><hr/></td>
+      <td><%= friend.id%></td>
+      <td><hr/></td>
+      <td><%= link_to 'Accept or Reject Request', edit_friendship_path(friend) if greeting== "1"%></td>
+      
+  </tr>
+</table>
+<hr/>
