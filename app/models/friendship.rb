@@ -34,6 +34,10 @@ class Friendship < ApplicationRecord
     self.class.exists?(inverse_options)
   end
 
+  def inverses
+    self.class.where(inverse_options)
+  end
+
   def inverse_options
     { friend_id: user_id, user_id: friend_id, status: true }
   end

@@ -15,8 +15,9 @@
       <td><hr/></td>
       <td><%= friend.id%></td>
       <td><hr/></td>
+      <td><%= link_to 'Remove Friend', friendship_path(friend), method: :delete, data: { confirm: 'Are you sure?' }  if greeting== "0"%></td>
       <td><%= link_to 'Accept or Reject Request', edit_friendship_path(friend) if greeting== "1"%></td>
-      
+      <td><%= link_to 'Cancel Request', friendship_path(friend), method: :delete, data: { confirm: 'Are you sure?' }  if greeting== "2"%></td>
   </tr>
 </table>
 <hr/>

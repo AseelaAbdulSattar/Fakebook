@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   resources :friendships, :home
   
- 
+  #match "/friendships/id" => "friendships#cancel_request", :as => 'cancel_request', :via => [:get, :post]
+  #get '/friendships', to: 'friendships#cancel_request'
+
   #get 'friendships/new'
   #get 'friendships/index'
   #get 'home/index'
