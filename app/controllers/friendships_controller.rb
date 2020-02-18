@@ -1,54 +1,60 @@
 class FriendshipsController < ApplicationController
+  @is_unfriend = false
   def new
-    @users = User.all_except(current_user)
+    @users = User.all_except(current_user).order(:name).page(params[:page])
   end
 
   def create
-    user = current_user
-      @friend = Friendship.create(user_id: user.id, friend_id: params[:friend_id])
-      if @friend.save
-        flash[:success] = "Request sent successfully"
-        redirect_to new_friendship_path
-      else
-        flash[:error] = "Already Friends"
-        redirect_to new_friendship_path
-      end
-  end
-
-  def show
-    @friend = Friendship.find(params[:id])
-  end
-
-  def edit
-    user = current_user
-    @friend = Friendship.find_by_user_id_and_friend_id(params[:id], user.id)
+    @friend = Friendship.create(user_id: current_user.id, friend_id: params[:friend_id])
+    if @friend.save
+      flash[:success] = "Request sent successfully"
+      redirect_to new_friendship_path
+    else
+      flash[:error] = "Already Friends"
+      redirect_to new_friendship_path
+    end
   end
 
   def destroy
-    user = current_user
-    @friend = Friendship.find_by_user_id_and_friend_id(user.id, params[:id])
+    @friend = Friendship.existing_friends(current_user.id, params[:id])
     @friend.destroy
+    if @is_unfriend
+      redirect_to friendships_path
+    else
+      redirect_to requests_sent_friendships_path
+    end
+  end
 
-    redirect_to friendships_path
+  def unfriend
+    @is_unfriend = true
+    destroy()
+  end
+
+  def accept_request
+    @friend = Friendship.existing_friends(params[:id], current_user.id)
   end
   
   def update
       @friend = Friendship.find(params[:id])
-      flash[:error] = @friend
       if @friend.update(friend_params)
         flash[:success] = "Request Accepted"
         redirect_to friendships_path
       else
         flash[:error] = "Something went wrong"
-        render "edit"
+        render "accept_request"
       end
   end
 
+  def pending_friends
+    @friends_req_pending = User.pending_friends(current_user)
+  end
+
+  def requests_sent
+    @friends_request_sent = User.sent_requests(current_user)
+  end
+
   def index
-    user = current_user
-    @friends = User.where(id: Friendship.where(user_id: user.id, status: true).pluck(:friend_id))
-    @friends_request_sent = User.where(id: Friendship.where(user_id: user.id, status: nil).pluck(:friend_id))
-    @friends_req_pending = User.where(id: Friendship.where(friend_id: user.id, status: nil).pluck(:user_id))
+    @friends = User.friends(current_user)
   end
 
   private

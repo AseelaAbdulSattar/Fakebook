@@ -1,14 +1,11 @@
 <%= form_for(@friend) do |form| %>
   <p>
-    <%= form.label :status %><br>
+    <%= form.label :Request %><br>
     <%= form.radio_button :status, 'true'%>
     <%= form.label :status, "Accept" %><br>
     <%= form.radio_button :status, 'false', :checked => true %>
     <%= form.label :status, "Reject" %><br>
-    
-    <%= form.submit %>
+    <%= form.submit 'Update'%>
   </p>
 <% end %>
-<%= link_to "Back", friendships_path %> 
-
-
+<%= button_to "Back", pending_friends_friendships_path(@friend), { method: :get, class: :buttonhome} %> 

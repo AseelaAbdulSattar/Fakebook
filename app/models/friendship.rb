@@ -10,6 +10,11 @@ class Friendship < ApplicationRecord
       errors.add(:base, 'No- Request Exists')
     end
   end
+
+  def self.existing_friends(user_id, friend_id)
+    find_by_user_id_and_friend_id(user_id, friend_id)
+  end
+  
   
   after_update :update_inverse , unless: :has_inverse?
   after_destroy :destroy_inverses, if: :has_inverse?

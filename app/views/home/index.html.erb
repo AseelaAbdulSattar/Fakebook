@@ -1,34 +1,26 @@
 <table>
   <tr>
     <h1>Home</h1>
-    <td><%= link_to 'Send Friend Request', new_friendship_path %></td>
+    <td><%= button_to 'Send Friend Request', new_friendship_path, { method: :get, class: :buttonhome}%></td>
   </tr>
   <tr>
-    <td><%= link_to 'My Friends', friendships_path(current_user) %></td>
+    <td><%= button_to 'My Friends', friendships_path(current_user), { method: :get, class: :buttonhome } %></td>
+  </tr> 
+  <tr>
+    <td><%= button_to 'Pending Friends', pending_friends_friendships_path(current_user), { method: :get, class: :buttonhome} %></td>
+  </tr> 
+  <tr>
+    <td><%= button_to 'Requests Sent', requests_sent_friendships_path(current_user), { method: :get, class: :buttonhome } %></td>
   </tr>  
-  <tr>
-    <td><%= link_to 'Accept or Reject Request', friendships_path(current_user)%></td>
-  </tr>
-  </tr>
 </table>
 
-
-<%if false%>
-  <%= link_to render(:partial => 'friendships/accept'), friendships_path(current_user) %><br>
-  <%= link_to render(:partial => 'shared/logo'), root_url %>
-<%end%>
-
-
--------- This Part is only for help------------
 <h2>All Users</h2>
 <table>
   <tr>
     <th>Name</th>
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    <td><hr/></td>
     <th>Email</th>
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    <td><hr/></td>
   </tr>
 </table>
 
