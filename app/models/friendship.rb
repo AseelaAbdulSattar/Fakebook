@@ -5,12 +5,6 @@ class Friendship < ApplicationRecord
   scope :friends, -> {where(status: true)}
   #scope :friends, -> {where(friend_id: User.current.id).or(where( user_id: User.current.id)).and(where(status: true))}
 
-  def exist_friend_id
-    if !Friendship.exists?(friend_id: id)
-      errors.add(:base, 'No- Request Exists')
-    end
-  end
-
   def self.existing_friends(user_id, friend_id)
     find_by_user_id_and_friend_id(user_id, friend_id)
   end
