@@ -9,16 +9,15 @@ class User < ApplicationRecord
     where.not(id: Friendship.where(user_id: user.id).pluck(:friend_id) << user.id)
   end
   
-  def self.friends(user)
-    where(id: Friendship.where(user_id: user.id, status: true).pluck(:friend_id))
+  def my_friends
+    User.where(id: self.friendships.true_friends.pluck(:friend_id))
   end
 
-  def self.pending_friends(user)
-    where(id: Friendship.where(friend_id: user.id, status: nil).pluck(:user_id))
+  def pending_friends
+    User.where(id: Friendship.where(friend_id: self.id, status: nil).pluck(:user_id))
   end
 
-  def self.sent_requests(user)
-    where(id: Friendship.where(user_id: user.id, status: nil).pluck(:friend_id))
+  def sent_requests
+    User.where(id: Friendship.where(user_id: self.id, status: nil).pluck(:friend_id))
   end
-  
 end

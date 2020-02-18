@@ -1,19 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "home#index"
-  direct :homepage do
-    "http://localhost:3000/"
-  end
+  direct :homepage do "#{root_url}" end
 
   resources :home
   resources :friendships do
     member do
-      match :accept_request, :via => [:post]
-      match :unfriend, :via => [:post]
+      post :accept_request
+      post :unfriend
     end
     collection do
-      match :pending_friends, :via => [:get]
-      match :requests_sent, :via => [:get]
+      get :pending_friends
+      get :requests_sent
     end
   end
 end

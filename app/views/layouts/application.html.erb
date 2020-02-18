@@ -20,7 +20,7 @@
         <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %> |
       <% end %>
 
-      <%= link_to 'home', homepage_url %>
+      <%= link_to 'home', root_url %>
     </p>
     <% flash.each do |key, value| %>  
       <%= content_tag(:div, value, class: "alert alert-#{key}") %>  

@@ -5,18 +5,18 @@
     <th>Email</th>
     <th><hr/></th>
     <th>id</th>
-    
   </tr>
+  
   <tr>
-      <td><%= friend.name%></td>
-      <td><hr/></td>
-      <td><%= friend.email%></td>
-      <td><hr/></td>
-      <td><%= friend.id%></td>
-      <td><hr/></td>
-      <td><%= link_to 'Unfriend', unfriend_friendship_path(friend), method: :unfriend, data: { confirm: 'Are you sure?' }  if greeting== "0"%></td>
-      <td><%= link_to 'Accept or Reject Request', accept_request_friendship_path(friend) , method: :accept_request if greeting== "1"%></td>
-      <td><%= link_to 'Cancel Request', friendship_path(friend), method: :delete, data: { confirm: 'Are you sure?' }  if greeting== "2"%></td>
+    <td><%= friend.name%></td>
+    <td><hr/></td>
+    <td><%= friend.email%></td>
+    <td><hr/></td>
+    <td><%= friend.id%></td>
+    <td><hr/></td>
+    <td><%= link_to 'Unfriend', unfriend_friendship_path(friend), method: :unfriend, data: { confirm: 'Are you sure?' }  if greeting== "0"%></td>
+    <td><%= link_to 'Accept or Reject Request', accept_request_friendship_path(friend) , method: :accept_request if greeting== "1"%></td>
+    <td><%= link_to 'Cancel Request', friendship_path(friend), method: :delete, data: { confirm: 'Are you sure?' }  if greeting== "2"%></td>
   </tr>
 </table>
 <hr/>

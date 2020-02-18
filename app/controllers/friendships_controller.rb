@@ -34,26 +34,25 @@ class FriendshipsController < ApplicationController
   end
   
   def update
-      @friend = Friendship.find(params[:id])
-      if @friend.update(friend_params)
-        flash[:success] = "Request Accepted"
-        redirect_to friendships_path
-      else
-        flash[:error] = "Something went wrong"
-        render "accept_request"
-      end
+    @friend = Friendship.find(params[:id])
+    if @friend.update(friend_params)
+      flash[:success] = "Request Accepted"
+    else
+      flash[:error] = "Something went wrong"
+    end
+    redirect_to friendships_path
   end
 
   def pending_friends
-    @friends_req_pending = User.pending_friends(current_user)
+    @friends_req_pending = current_user.pending_friends
   end
 
   def requests_sent
-    @friends_request_sent = User.sent_requests(current_user)
+    @friends_request_sent = current_user.sent_requests
   end
 
   def index
-    @friends = User.friends(current_user)
+    @friends = current_user.my_friends
   end
 
   private

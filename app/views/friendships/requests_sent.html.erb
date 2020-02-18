@@ -1,8 +1,6 @@
 <% if @friends_request_sent.empty? %>
   <h2>No Sent Requests</h2>
-<% end %>
-
-<%if !@friends_request_sent.empty? %>
+<% elsif !@friends_request_sent.empty? %>
   <h1> Request Sent </h1>
   <%= render partial: "friend", collection: @friends_request_sent, :locals => {:greeting => '2'}%>
-<%end%>
+<% end %>
