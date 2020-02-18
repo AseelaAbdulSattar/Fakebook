@@ -1,5 +1,11 @@
 class FriendshipsController < ApplicationController
-  @is_unfriend = false
+  before_action :destroy_friendship, only: [:destory, :unfriend]
+  
+  def destroy_friendship
+    current_user.friendships.where(friend_id: params[:id]).first&.destroy!
+  end
+  
+  #@is_unfriend = false
   def new
     @users = User.all_except(current_user).order(:name).page(params[:page])
   end
@@ -8,25 +14,18 @@ class FriendshipsController < ApplicationController
     @friendship = current_user.friendships.new(friend_id: params[:friend_id])
     if @friendship.save
       flash[:success] = "Request sent successfully"
-      redirect_to new_friendship_path
     else
       flash[:error] = "Already Friends"
-      redirect_to new_friendship_path
     end
+    redirect_to new_friendship_path
   end
 
   def destroy
-    current_user.friendships.where(friend_id: params[:id]).first&.destroy!
-    if @is_unfriend
-      redirect_to friendships_path
-    else
-      redirect_to requests_sent_friendships_path
-    end
+    redirect_to requests_sent_friendships_path
   end
 
   def unfriend
-    @is_unfriend = true
-    destroy()
+    redirect_to friendships_path
   end
 
   def accept_request
