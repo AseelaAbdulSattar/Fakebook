@@ -5,8 +5,8 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    @friend = Friendship.create(user_id: current_user.id, friend_id: params[:friend_id])
-    if @friend.save
+    @friendship = current_user.friendships.new(friend_id: params[:friend_id])
+    if @friendship.save
       flash[:success] = "Request sent successfully"
       redirect_to new_friendship_path
     else
@@ -16,8 +16,7 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @friend = Friendship.existing_friends(current_user.id, params[:id])
-    @friend.destroy
+    current_user.friendships.where(friend_id: params[:id]).first&.destroy!
     if @is_unfriend
       redirect_to friendships_path
     else
