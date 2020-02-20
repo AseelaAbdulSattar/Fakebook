@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
-  get 'home/index'
   devise_for :users
   root to: "home#index"
-  direct :homepage do
-    "http://localhost:3000/"
+  direct :homepage do "#{root_url}" end
+
+  resources :home
+  resources :friendships do
+    member do
+      post :accept_request
+      post :unfriend
+    end
+    collection do
+      get :pending_friends
+      get :requests_sent
+    end
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

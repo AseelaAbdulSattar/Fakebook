@@ -1,0 +1,6 @@
+<% if @friends.empty? %>
+  <h2>No Friends Exists</h2>
+<% elsif !@friends.empty?%>
+  <h1>My Friends</h1>
+  <%= render partial: "friend", collection: @friends, :locals => {:greeting => '0'}%>
+<%end%>
