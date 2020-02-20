@@ -2,7 +2,6 @@ class Friendship < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: "User"
   validates :friend_id, uniqueness: { scope: :user_id, message: "Already Sent" }
-  scope :true_friends, -> {where('status' => true)}
 
   after_update :add_friend , unless: :already_friends?
   after_destroy :destroy_friend, if: :already_friends?

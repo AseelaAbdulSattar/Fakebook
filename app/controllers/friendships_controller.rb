@@ -50,7 +50,7 @@ class FriendshipsController < ApplicationController
   end
 
   def index
-    @friends = current_user.my_friends
+    @friends = current_user.friends
   end
 
   private
