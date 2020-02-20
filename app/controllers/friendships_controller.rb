@@ -1,11 +1,10 @@
 class FriendshipsController < ApplicationController
-  before_action :destroy_friendship, only: [:destory, :unfriend]
+  before_action :destroy_friendship, only: [:cancel_request, :unfriend]
   
   def destroy_friendship
     current_user.friendships.where(friend_id: params[:id]).first&.destroy!
   end
   
-  #@is_unfriend = false
   def new
     @users = User.all_except(current_user).order(:name).page(params[:page])
   end
@@ -20,10 +19,10 @@ class FriendshipsController < ApplicationController
     redirect_to new_friendship_path
   end
 
-  def destroy
+  def cancel_request
     redirect_to requests_sent_friendships_path
   end
-
+  
   def unfriend
     redirect_to friendships_path
   end

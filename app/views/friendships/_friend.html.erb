@@ -16,7 +16,7 @@
     <td><hr/></td>
     <td><%= link_to 'Unfriend', unfriend_friendship_path(friend), method: :unfriend, data: { confirm: 'Are you sure?' }  if greeting== "0"%></td>
     <td><%= link_to 'Accept or Reject Request', accept_request_friendship_path(friend) , method: :accept_request if greeting== "1"%></td>
-    <td><%= link_to 'Cancel Request', friendship_path(friend), method: :delete, data: { confirm: 'Are you sure?' }  if greeting== "2"%></td>
+    <td><%= link_to 'Cancel Request', cancel_request_friendship_path(friend), method: :cancel_request, data: { confirm: 'Are you sure?' }  if greeting== "2"%></td>
   </tr>
 </table>
 <hr/>

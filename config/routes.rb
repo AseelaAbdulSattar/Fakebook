@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     member do
       post :accept_request
       post :unfriend
+      post :cancel_request
     end
     collection do
       get :pending_friends
