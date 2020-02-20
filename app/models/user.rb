@@ -10,14 +10,14 @@ class User < ApplicationRecord
   end
   
   def my_friends
-    User.where(id: self.friendships.true_friends.pluck(:friend_id))
+    User.where(id: friendships.true_friends.pluck(:friend_id))
   end
 
   def pending_friends
-    User.where(id: Friendship.where(friend_id: self.id, status: nil).pluck(:user_id))
+    User.where(id: Friendship.where(friend_id: id, status: nil).pluck(:user_id))
   end
 
   def sent_requests
-    User.where(id: Friendship.where(user_id: self.id, status: nil).pluck(:friend_id))
+    User.where(id: Friendship.where(user_id: id, status: nil).pluck(:friend_id))
   end
 end
