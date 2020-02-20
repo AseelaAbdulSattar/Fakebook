@@ -41,12 +41,12 @@ class FriendshipsController < ApplicationController
     redirect_to friendships_path
   end
 
-  def friend_requests
-    @friends_req = current_user.friend_requests
+  def requests_received
+    @friends_req = current_user.friendships_requests_received
   end
 
-  def pending_friends
-    @friends_request_sent = current_user.pending_friends
+  def requests_sent
+    @friendships_requests_sent = current_user.friendships_requests_sent
   end
 
   def index

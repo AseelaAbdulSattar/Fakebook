@@ -1,8 +1,10 @@
 class Friendship < ApplicationRecord
+
   belongs_to :user
   belongs_to :friend, class_name: "User"
-  belongs_to :pending_friend, foreign_key: "friend_id", class_name: "User"
+  belongs_to :friendships_requests_sent, foreign_key: "friend_id", class_name: "User"
   validates :friend_id, uniqueness: { scope: :user_id, message: "Already Sent" }
+
   after_update :add_friend , unless: :already_friends?
   after_destroy :destroy_friend, if: :already_friends?
 
@@ -33,4 +35,5 @@ class Friendship < ApplicationRecord
   def inverse_options
     { friend_id: user_id, user_id: friend_id, status: true }
   end
+
 end
