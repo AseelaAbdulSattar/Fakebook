@@ -1,6 +1,6 @@
-<% if @friends_req_pending.empty?%>
-  <h2>No Pending Requests</h2>
-<% else @friends_req_pending %>
-  <h1> Pending Requests </h1>
-  <%= render partial: "friend", collection: @friends_req_pending, :locals => {:greeting => '1'}%>
-<%end%>
+<% if @friends_request_sent.empty? %>
+  <h2>No Pending Friends</h2>
+<% else @friends_request_sent %>
+  <h1> Pending Friends </h1>
+  <%= render partial: "friend", collection: @friends_request_sent, :locals => {:greeting => '2'}%>
+<% end %>

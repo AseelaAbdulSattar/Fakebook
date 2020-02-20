@@ -5,13 +5,13 @@
   </tr>
   <tr>
     <td><%= button_to 'My Friends', friendships_path(current_user), { method: :get, class: :buttonhome } %></td>
-  </tr> 
+  </tr>
   <tr>
-    <td><%= button_to 'Pending Friends', pending_friends_friendships_path(current_user), { method: :get, class: :buttonhome} %></td>
-  </tr> 
+    <td><%= button_to 'Friend Requests', friend_requests_friendships_path(current_user), { method: :get, class: :buttonhome} %></td>
+  </tr>
   <tr>
-    <td><%= button_to 'Requests Sent', requests_sent_friendships_path(current_user), { method: :get, class: :buttonhome } %></td>
-  </tr>  
+    <td><%= button_to 'Pending Friends', pending_friends_friendships_path(current_user), { method: :get, class: :buttonhome } %></td>
+  </tr>
 </table>
 
 <h2>All Users</h2>

@@ -1,8 +1,8 @@
 class Friendship < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: "User"
+  belongs_to :pending_friend, foreign_key: "friend_id", class_name: "User"
   validates :friend_id, uniqueness: { scope: :user_id, message: "Already Sent" }
-
   after_update :add_friend , unless: :already_friends?
   after_destroy :destroy_friend, if: :already_friends?
 

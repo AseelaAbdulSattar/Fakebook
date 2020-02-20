@@ -4,16 +4,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :friendships
   has_many :friends, -> { where( friendships: {status: true})}, through: :friendships
+  has_many :pending_friends, -> { where( friendships: {status: nil})}, through: :friendships
 
   def self.all_except(user)
-    where.not(id: Friendship.where(user_id: user.id).pluck(:friend_id) << user.id)
+    ids = user.pending_friends.ids << user.id
+    where.not(id:  ids += user.friends.ids)
   end
 
-  def pending_friends
+  def friend_requests
     User.where(id: Friendship.where(friend_id: id, status: nil).pluck(:user_id))
-  end
-
-  def sent_requests
-    User.where(id: Friendship.where(user_id: id, status: nil).pluck(:friend_id))
   end
 end

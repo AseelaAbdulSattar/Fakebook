@@ -1,10 +1,10 @@
 class FriendshipsController < ApplicationController
   before_action :destroy_friendship, only: [:cancel_request, :unfriend]
-  
+
   def destroy_friendship
     current_user.friendships.where(friend_id: params[:id]).first&.destroy!
   end
-  
+
   def new
     @users = User.all_except(current_user).order(:name).page(params[:page])
   end
@@ -22,7 +22,7 @@ class FriendshipsController < ApplicationController
   def cancel_request
     redirect_to requests_sent_friendships_path
   end
-  
+
   def unfriend
     redirect_to friendships_path
   end
@@ -30,7 +30,7 @@ class FriendshipsController < ApplicationController
   def accept_request
     @friend = Friendship.existing_friends(params[:id], current_user.id)
   end
-  
+
   def update
     @friend = Friendship.find(params[:id])
     if @friend.update(friend_params)
@@ -41,12 +41,12 @@ class FriendshipsController < ApplicationController
     redirect_to friendships_path
   end
 
-  def pending_friends
-    @friends_req_pending = current_user.pending_friends
+  def friend_requests
+    @friends_req = current_user.friend_requests
   end
 
-  def requests_sent
-    @friends_request_sent = current_user.sent_requests
+  def pending_friends
+    @friends_request_sent = current_user.pending_friends
   end
 
   def index

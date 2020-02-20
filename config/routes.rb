@@ -11,8 +11,8 @@ Rails.application.routes.draw do
       post :cancel_request
     end
     collection do
+      get :friend_requests
       get :pending_friends
-      get :requests_sent
     end
   end
 end
