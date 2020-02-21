@@ -2,5 +2,5 @@
   <h2>No Request Sent</h2>
 <% else @friendships_requests_sent %>
   <h1> Friend Request Sent </h1>
-  <%= render partial: "friend", collection: @friendships_requests_sent, :locals => { greeting: '2' }%>
+  <%= render partial: "friend", collection: @friendships_requests_sent, locals: { is_friend: '0' }%>
 <% end %>
