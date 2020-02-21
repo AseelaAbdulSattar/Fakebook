@@ -19,19 +19,11 @@ class FriendshipsController < ApplicationController
     redirect_to new_friendship_path
   end
 
-  def cancel_request
-    redirect_to requests_sent_friendships_path
-  end
-
-  def unfriend
-    redirect_to friendships_path
-  end
-
   def accept_request
     @friend = Friendship.existing_friends(params[:id], current_user.id)
   end
 
-  def update
+  def accept_or_reject_request
     @friend = Friendship.find(params[:id])
     if @friend.update(friend_params)
       flash[:success] = "Request Accepted"
@@ -51,6 +43,14 @@ class FriendshipsController < ApplicationController
 
   def index
     @friends = current_user.friends
+  end
+
+  def cancel_request
+    redirect_to requests_sent_friendships_path
+  end
+
+  def unfriend
+    redirect_to friendships_path
   end
 
   private

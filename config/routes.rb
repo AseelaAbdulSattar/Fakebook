@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       post :accept_request
       post :unfriend
       post :cancel_request
+      patch :accept_or_reject_request
     end
     collection do
       get :requests_received
