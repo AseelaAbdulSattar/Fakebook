@@ -10,7 +10,7 @@
     <td><%= friend.email%></td>
     <td><%= friend.id%></td>
     <td><%= link_to 'Unfriend', unfriend_friendship_path(friend), method: :post, data: { confirm: 'Are you sure?' }  if is_friend %></td>
-    <td><%= link_to 'Cancel Request', cancel_request_friendship_path(friend), method: :post, data: { confirm: 'Are you sure?' }  if !is_friend %></td>
+    <td><%= link_to 'Cancel Request', cancel_request_friendship_path(friend), method: :post, data: { confirm: 'Are you sure?' }  unless is_friend %></td>
   </tr>
 </table>
 <hr/>
