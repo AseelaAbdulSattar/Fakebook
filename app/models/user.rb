@@ -13,4 +13,20 @@ class User < ApplicationRecord
     where.not(id:  ids += user.friends.ids)
   end
 
+  def self.to_csv
+    attributes = %w{ name state email total_Friends}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |user|
+        csv << attributes.map{ |attr| user.send(attr) }
+      end
+    end
+  end
+
+  def total_Friends
+    self.friends.count
+  end
+
 end

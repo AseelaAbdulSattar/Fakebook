@@ -1,4 +1,4 @@
-<%= form_for(@friend, url: {action: "accept_or_reject_request", id: @friend}) do |form| %>
+<%= form_for(@friend, url: { action: "accept_or_reject_request", id: @friend }) do |form| %>
   <p>
     <%= form.label :Request %><br>
     <%= form.radio_button :status, 'true'%>
@@ -8,4 +8,4 @@
     <%= form.submit 'Update' %>
   </p>
 <% end %>
-<%= button_to "Back", requests_received_friendships_path(@friend), { method: :get, class: :buttonhome} %>
+<%= button_to "Back", requests_received_friendships_path(@friend), { method: :get, class: :buttonhome } %>

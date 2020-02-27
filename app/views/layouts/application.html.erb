@@ -21,11 +21,12 @@
       <% end %>
 
       <%= link_to 'home', root_url %>
+
     </p>
-    <% flash.each do |key, value| %>  
-      <%= content_tag(:div, value, class: "alert alert-#{key}") %>  
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "alert alert-#{key}") %>
     <% end %>
-    
+
     <%= yield %>
   </body>
 </html>
