@@ -20,13 +20,16 @@ class FriendshipsController < ApplicationController
   end
 
   def accept_request
-    @friend = Friendship.existing_friends(params[:id], current_user.id)
+    @friendship = Friendship.existing_friends(params[:id], current_user.id)
   end
 
   def accept_or_reject_request
-    @friend = Friendship.find(params[:id])
-    if @friend.update(friend_params)
+    @friendship = Friendship.find(params[:id])
+    flash[:success] = params[:friendship][:status]
+    if params[:friendship][:status] == 'true' && @friendship.update(friend_params)
       flash[:success] = "Request Accepted"
+    elsif params[:friendship][:status] == 'false' && @friendship.update(friend_params)
+      flash[:success] = "Request Rejected"
     else
       flash[:error] = "Something went wrong"
     end

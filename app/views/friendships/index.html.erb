@@ -2,5 +2,5 @@
   <h2>No Friends Exists</h2>
 <% else @friends %>
   <h1>My Friends</h1>
-  <%= render partial: "friend", collection: @friends, locals: { is_friend: '1' }%>
+  <%= render partial: "friend", collection: @friends, locals: { is_friend: true }%>
 <%end%>

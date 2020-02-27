@@ -1,20 +1,15 @@
 <table>
   <tr>
     <th>Name</th>
-    <th><hr/></th>
     <th>Email</th>
-    <th><hr/></th>
     <th>id</th>
   </tr>
 
   <tr>
     <td><%= friend_request_recieved.user.name%></td>
-    <td><hr/></td>
     <td><%= friend_request_recieved.user.email%></td>
-    <td><hr/></td>
     <td><%= friend_request_recieved.user.id%></td>
-    <td><hr/></td>
-    <td><%= link_to 'Accept or Reject Request', accept_request_friendship_path(friend_request_recieved.user) , method: :accept_request%></td>
+    <td><%= link_to 'Accept or Reject Request', accept_request_friendship_path(friend_request_recieved.user) , method: :post%></td>
     </tr>
 </table>
 <hr/>
