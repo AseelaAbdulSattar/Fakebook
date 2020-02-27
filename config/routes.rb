@@ -8,9 +8,11 @@ Rails.application.routes.draw do
     member do
       post :accept_request
       post :unfriend
+      post :cancel_request
+      patch :accept_or_reject_request
     end
     collection do
-      get :pending_friends
+      get :requests_received
       get :requests_sent
     end
   end

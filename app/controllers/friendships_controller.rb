@@ -1,11 +1,10 @@
 class FriendshipsController < ApplicationController
-  before_action :destroy_friendship, only: [:destory, :unfriend]
-  
+  before_action :destroy_friendship, only: [:cancel_request, :unfriend]
+
   def destroy_friendship
     current_user.friendships.where(friend_id: params[:id]).first&.destroy!
   end
-  
-  #@is_unfriend = false
+
   def new
     @users = User.all_except(current_user).order(:name).page(params[:page])
   end
@@ -20,38 +19,41 @@ class FriendshipsController < ApplicationController
     redirect_to new_friendship_path
   end
 
-  def destroy
-    redirect_to requests_sent_friendships_path
-  end
-
-  def unfriend
-    redirect_to friendships_path
-  end
-
   def accept_request
-    @friend = Friendship.existing_friends(params[:id], current_user.id)
+    @friendship = Friendship.existing_friends(params[:id], current_user.id)
   end
-  
-  def update
-    @friend = Friendship.find(params[:id])
-    if @friend.update(friend_params)
+
+  def accept_or_reject_request
+    @friendship = Friendship.find(params[:id])
+    flash[:success] = params[:friendship][:status]
+    if params[:friendship][:status] == 'true' && @friendship.update(friend_params)
       flash[:success] = "Request Accepted"
+    elsif params[:friendship][:status] == 'false' && @friendship.update(friend_params)
+      flash[:success] = "Request Rejected"
     else
       flash[:error] = "Something went wrong"
     end
     redirect_to friendships_path
   end
 
-  def pending_friends
-    @friends_req_pending = current_user.pending_friends
+  def requests_received
+    @friends_req = current_user.friendships_requests_received
   end
 
   def requests_sent
-    @friends_request_sent = current_user.sent_requests
+    @friendships_requests_sent = current_user.friendships_requests_sent
   end
 
   def index
-    @friends = current_user.my_friends
+    @friends = current_user.friends
+  end
+
+  def cancel_request
+    redirect_to requests_sent_friendships_path
+  end
+
+  def unfriend
+    redirect_to friendships_path
   end
 
   private
