@@ -37,15 +37,15 @@ class FriendshipsController < ApplicationController
   end
 
   def requests_received
-    @friends_req = current_user.friendships_requests_received
+    @friends_req = current_user.friendships_requests_received.order("created_at DESC").page(params[:page])
   end
 
   def requests_sent
-    @friendships_requests_sent = current_user.friendships_requests_sent
+    @friendships_requests_sent = current_user.friendships_requests_sent.order(:name).page(params[:page])
   end
 
   def index
-    @friends = current_user.friends
+    @friends = current_user.friends.order(:name).page(params[:page])
   end
 
   def cancel_request

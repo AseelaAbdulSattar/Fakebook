@@ -1,15 +1,12 @@
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>id</th>
-  </tr>
-
-  <tr>
-    <td><%= friend_request_recieved.user.name%></td>
-    <td><%= friend_request_recieved.user.email%></td>
-    <td><%= friend_request_recieved.user.id%></td>
-    <td><%= link_to 'Accept or Reject Request', accept_request_friendship_path(friend_request_recieved.user) , method: :post%></td>
-    </tr>
-</table>
-<hr/>
+<div class="row my-3">
+  <div class=" col-md-8">
+    <div class="row">
+      <div class=" col-md-3"><%= friend_request_recieved.user.name%></div>
+      <div class=" col-md-7"><%= friend_request_recieved.user.email%></div>
+      <div class=" col-md-2"><%= friend_request_recieved.user.id%></div>
+    </div>
+  </div>
+  <div class=" col-md-4">
+    <%= button_to 'Accept or Reject Request', accept_request_friendship_path(friend_request_recieved.user) , method: :post, class: "buttonhome font btn float-left  btn-default btnbackground"%>
+  </div>
+</div>

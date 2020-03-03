@@ -1,32 +1,14 @@
-<table>
-  <tr>
-    <h1>Home</h1>
-    <td><%= button_to 'Send Friend Request', new_friendship_path, { method: :get, class: :buttonhome}%></td>
-  </tr>
-  <tr>
-    <td><%= button_to 'My Friends', friendships_path(current_user), { method: :get, class: :buttonhome } %></td>
-  </tr>
-  <tr>
-    <td><%= button_to 'Friend Requests Recieved', requests_received_friendships_path(current_user), { method: :get, class: :buttonhome} %></td>
-  </tr>
-  <tr>
-    <td><%= button_to 'Friend Request Sent', requests_sent_friendships_path(current_user), { method: :get, class: :buttonhome } %></td>
-  </tr>
-  <tr>
-    <td><%= button_to 'Dashboard', admin_user_session_path, { method: :get, class: :buttonhome } %></td>
-  </tr>
-  <tr>
-    <td><%= link_to "Export to CSV", home_index_path(@users, format: :csv), class: 'btn btn-info' %></td>
-  </tr>
 
-</table>
 
-<h2>All Users</h2>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-  </tr>
-</table>
+<% if false %>
+<h1> HOME </h1>
+  <h2>All Users</h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </table>
 
 <%= render partial: "user", collection: @users%>
+<% end %>

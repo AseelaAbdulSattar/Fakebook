@@ -1,18 +1,36 @@
-<h1>You can send a Friend Request</h1>
-<%= paginate @users %>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th></th>
-  </tr>
-  
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= user.name %></td>
-      <td><%= user.email %></td>
-      <td><%= button_to 'Add as Friend' , friendships_path(friend_id: user.id), method: :post %></td>
-    </tr>
-  <% end %>
-</table>
-<%= paginate @users %>
+<div class="container">
+  <div class="d-flex justify-content-center h-100">
+    <div class="card friends remember">
+      <div class="card-header">
+				<h3>You can send a Friend Request</h3>
+        <%= paginate @users %>
+        <div class="row form-group">
+          <div class=" col-md-9">
+            <div class="row">
+              <div class=" col-sm-4 "> Name</div>
+              <div class=" col-sm-7 "> Email</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <% @users.each do |user| %>
+            <div class=" col-md-9">
+              <div class="row">
+                <div class=" col-md-4"><%= user.name%></div>
+                <div class=" col-md-8"><%= user.email%></div>
+              </div>
+            </div>
+            <div class=" col-md-3 form-group">
+              <%= button_to 'Add as Friend' , friendships_path(friend_id: user.id), method: :post, class: "font buttonhome btn float-left btn-default btnbackground" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-footer">
+				<%= paginate @users %>
+			</div>
+    </div>
+  </div>
+</div>
