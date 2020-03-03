@@ -39,7 +39,7 @@
             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               Options
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <ul class="dropdown-menu font-12" aria-labelledby="navbarDropdownMenuLink">
               <% if user_signed_in? %>
                 <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'dropdown-item' %></li>
                 <li><%= link_to 'Dashboard', admin_user_session_path, :class => "dropdown-item" %></li>

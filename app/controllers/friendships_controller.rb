@@ -37,7 +37,7 @@ class FriendshipsController < ApplicationController
   end
 
   def requests_received
-    @friends_req = current_user.friendships_requests_received.order("created_at DESC").page(params[:page])
+    @friends_req = current_user.friendships_requests_received.order(created_at: :desc).page(params[:page])
   end
 
   def requests_sent

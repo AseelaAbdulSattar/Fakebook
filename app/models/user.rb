@@ -26,7 +26,7 @@ class User < ApplicationRecord
   end
 
   def total_Friends
-    self.friends.count
+    friends.count
   end
 
 end

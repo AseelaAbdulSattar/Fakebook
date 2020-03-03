@@ -3,7 +3,7 @@ h1 {
 }
 /* @import url('https://fonts.googleapis.com/css?family=Numans'); */
 
-html,body{
+html, body {
   background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -11,79 +11,73 @@ html,body{
   font-family: 'Numans', sans-serif;
 }
 
-.container{
-height: 100%;
-align-content: center;
+.container {
+  height: 100%;
+  align-content: center;
 }
 
-.font{
-  font-size: 10px !important;
+.font-12 {
+  font-size: 12px !important;
 }
 
-.card{
+.card {
   margin-top: auto;
   margin-bottom: auto;
   background-color: rgba(0,0,0,.4) !important;
 }
 
-.btnbackground, .dropdown-menu > li:hover, .dropdown-menu > li > a:focus {
+.btnbackground, .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
   background-color: #2471A3 !important;
   color: white !important;
 }
 
-.friends{
+.friends {
   height: 500px;
   width: 800px;
 }
-.dropdown-item{
-  font-size: 12px !important;
-}
-
 
 .dropdown-menu .divider {
   background-color: rgb(22, 82, 122);
 }
 
-.new{
+.new {
   height: 420px;
   width: 280px;
 }
 
-.editUser{
+.editUser {
   height: 480px;
   width: 300px;
 }
 
-.forgot_password{
+.forgot_password {
   height: 370px;
   width: 290px;
 }
 
-.card-header h3{
+.card-header h3 {
   color: white;
 }
 
-.remember{
+.remember {
   color: white;
 }
 
-.remember input
-{
+.remember input {
   /* width: 20px;
   height: 20px; */
   margin-left: 15px;
   margin-right: 5px;
 }
 
-
-.links{
-color: white;
+.links {
+  color: white;
 }
 
-.margin{
+.margin {
   margin-left: 48px;
   }
 
-.links a{
-margin-left: 2px;
+.links a {
+  margin-left: 2px;
 }
