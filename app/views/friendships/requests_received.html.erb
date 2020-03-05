@@ -1,6 +1,31 @@
-<% if @friends_req.empty?%>
-  <h2>No Friend Requests</h2>
-<% else @friends_req %>
-  <h1> Friend Requests </h1>
-  <%= render partial: "friend_request_recieved", collection: @friends_req%>
-<%end%>
+<div class="container">
+  <div class="d-flex justify-content-center h-100">
+    <div class="card background friends">
+      <div class="card-header">
+        <% if @friends_req.empty? %>
+          <h3>No Friend Requests</h3>
+        <% else @friends_req %>
+          <h3>Friend Requests</h3>
+          <%= paginate @friends_req %>
+          <div class="row">
+            <div class=" col-md-9">
+              <div class="row">
+                <div class=" col-sm-3 "> Name</div>
+                <div class=" col-sm-6 "> Email</div>
+                <div class=" col-sm-2 "> id</div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="card-body">
+          <%= render partial: "friend_request_recieved", collection: @friends_req%>
+        <%end%>
+    </div>
+      <div class="card-footer">
+        <%= paginate @friends_req %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

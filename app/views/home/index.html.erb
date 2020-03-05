@@ -1,27 +1,3 @@
-<table>
-  <tr>
-    <h1>Home</h1>
-    <td><%= button_to 'Send Friend Request', new_friendship_path, { method: :get, class: :buttonhome}%></td>
-  </tr>
-  <tr>
-    <td><%= button_to 'My Friends', friendships_path(current_user), { method: :get, class: :buttonhome } %></td>
-  </tr>
-  <tr>
-    <td><%= button_to 'Friend Requests Recieved', requests_received_friendships_path(current_user), { method: :get, class: :buttonhome} %></td>
-  </tr>
-  <tr>
-    <td><%= button_to 'Friend Request Sent', requests_sent_friendships_path(current_user), { method: :get, class: :buttonhome } %></td>
-  </tr>
-</table>
-
-<h2>All Users</h2>
-<table>
-  <tr>
-    <th>Name</th>
-    <td><hr/></td>
-    <th>Email</th>
-    <td><hr/></td>
-  </tr>
-</table>
-
-<%= render partial: "user", collection: @users%>
+<% if false %>
+  <%= render partial: "user", collection: @users%>
+<% end %>

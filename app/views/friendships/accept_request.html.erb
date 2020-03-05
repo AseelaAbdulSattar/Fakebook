@@ -1,11 +1,29 @@
-<%= form_for(@friend, url: {action: "accept_or_reject_request", id: @friend}) do |form| %>
-  <p>
-    <%= form.label :Request %><br>
-    <%= form.radio_button :status, 'true'%>
-    <%= form.label :status, "Accept" %><br>
-    <%= form.radio_button :status, 'false', :checked => true %>
-    <%= form.label :status, "Reject" %><br>
-    <%= form.submit 'Update' %>
-  </p>
-<% end %>
-<%= button_to "Back", requests_received_friendships_path(@friend), { method: :get, class: :buttonhome} %>
+<div class="container">
+  <div class="d-flex justify-content-center h-100">
+    <div class="card background forgot_password">
+      <div class="card-header">
+				<h3>Friend Request</h3>
+			</div>
+      <div class="card-body">
+        <%= form_for(@friendship, url: { action: "accept_or_reject_request", id: @friendship }) do |form| %>
+          <div class=" form-group">
+            <%= form.radio_button :status, 'true'%>
+            <%= form.label :status, "Accept" %><br>
+          </div>
+
+          <div class=" form-group">
+            <%= form.radio_button :status, 'false', :checked => true %>
+            <%= form.label :status, "Reject" %><br>
+          </div>
+
+          <div class="form-group">
+            <%= form.submit "Update", class: "btn float-right btn-default font font-12 btnbackground blue"%>
+          </div>
+        <% end %>
+      </div>
+      <div class="card-footer">
+				<%= button_to "Back", requests_received_friendships_path(@friendship), { method: :get, class: "buttonhome btn float-left font font-12 btnbackground blue" } %>
+			</div>
+    </div>
+  </div>
+</div>

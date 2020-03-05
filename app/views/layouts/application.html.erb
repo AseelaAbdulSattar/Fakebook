@@ -4,28 +4,65 @@
     <title>Fakebook</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <p class="navbar-text float-right">
+    <nav class="navbar navbar-expand-lg navbar-dark btnbackground remember">
+			<a class="navbar-brand" >Fakebook</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav remember">
+          <li class="nav-item active">
+            <%= link_to "Home", root_path, :class => "nav-link" %>
+          </li>
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "Send Friend Request", new_friendship_path, :class => "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Friend Requests Recieved', requests_received_friendships_path(current_user), :class => "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Friend Request Sent', requests_sent_friendships_path(current_user), :class => "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'My Friends', friendships_path(current_user), :class => "nav-link" %>
+            </li>
+          <% end %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Options
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <% if user_signed_in? %>
+                <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'dropdown-item' %></li>
+                <li><%= link_to 'Dashboard', admin_user_session_path, :class => "dropdown-item" %></li>
+                <li><%= link_to "Export to CSV", home_index_path(@users, format: :csv), :class => "dropdown-item" %></li><hr/>
+                <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'dropdown-item'  %></li>
+              <% else %>
+                <li><%= link_to "Sign up", new_user_registration_path, :class => 'dropdown-item'  %></li>
+                <li><%= link_to "Login", new_user_session_path, :class => 'dropdown-item'  %></li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+      </div>
       <% if user_signed_in? %>
-        Dear <strong><%= current_user.name %></strong>, WELCOME to Fakebook<br/>
-        <br/><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %> |
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-        <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %> |
+        <span class="navbar-text">
+          Dear  <strong><%= current_user.name %></strong><br/> WELCOME to Fakebook
+        </span>
       <% end %>
+    </nav>
 
-      <%= link_to 'home', root_url %>
-    </p>
-    <% flash.each do |key, value| %>  
-      <%= content_tag(:div, value, class: "alert alert-#{key}") %>  
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "alert alert-#{key} remember") %>
     <% end %>
-    
+
     <%= yield %>
   </body>
 </html>
