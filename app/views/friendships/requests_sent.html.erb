@@ -1,13 +1,13 @@
 <div class="container">
   <div class="d-flex justify-content-center h-100">
-    <div class="card friends remember">
-      <div class="card-header">
+    <div class="card friends" id= "card">
+      <div class="card-header" id= "font-color">
 				<% if @friendships_requests_sent.empty? %>
           <h3>No Request Sent</h3>
         <% else @friendships_requests_sent %>
           <h3>Friend Request Sent</h3>
           <%= paginate @friendships_requests_sent %>
-          <div class="row remember">
+          <div class="row">
             <div class=" col-md-9">
               <div class="row">
                 <div class=" col-sm-3 "> Name</div>
@@ -17,7 +17,7 @@
             </div>
           </div>
       </div>
-      <div class="card-body">
+      <div class="card-body" id= "font-color">
           <%= render partial: "friend", collection: @friendships_requests_sent, locals: { is_friend: false }%>
         <%end%>
       </div>

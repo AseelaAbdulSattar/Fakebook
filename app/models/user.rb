@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  paginates_per 6
+  paginates_per 2
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :friendships

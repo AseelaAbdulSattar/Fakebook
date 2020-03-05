@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class=" col-md-3">
-    <%= button_to 'Unfriend', unfriend_friendship_path(friend), method: :post, class: "buttonhome btn float-left btn-default btnbackground font-12", data: { confirm: 'Are you sure?' }  if is_friend%>
-    <%= button_to 'Cancel Request', cancel_request_friendship_path(friend), method: :post, class: "buttonhome btn float-left btn-default btnbackground font-12", data: { confirm: 'Are you sure?' }  unless is_friend %>
+    <%= button_to 'Unfriend', unfriend_friendship_path(friend), method: :post, class: "buttonhome btn float-left  btnbackground font-12", id: "font-color", data: { confirm: 'Are you sure?' }  if is_friend%>
+    <%= button_to 'Cancel Request', cancel_request_friendship_path(friend), method: :post, class: "buttonhome btn float-left  btnbackground font-12", id: "font-color", data: { confirm: 'Are you sure?' }  unless is_friend %>
   </div>
 </div>

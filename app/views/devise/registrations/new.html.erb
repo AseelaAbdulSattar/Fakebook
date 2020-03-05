@@ -1,11 +1,11 @@
   <div class="container">
   <div class="d-flex justify-content-center h-100">
-    <div class="card new">
+    <div class="card new" id= "card">
       <div class="card-header">
 				<h3>Sign up</h3>
 			</div>
 
-      <div class="card-body remember">
+      <div class="card-body">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|  %>
           <%= render "devise/shared/error_messages", resource: resource %>
           <div class="input-group form-group">
@@ -18,7 +18,7 @@
 
           <div class="field form-group">
             <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "New Password"  %>
-            <div class="remember font">
+            <div class=" font-12" id="font-color">
               <% if @minimum_password_length%>
                 <em>[ Minimum characters: <%= @minimum_password_length %>]</em>
               <% end %>
@@ -30,7 +30,7 @@
           </div>
 
           <div class="form-group">
-            <%= f.submit "Sign up", class: "btn float-right btn-default btnbackground"%>
+            <%= f.submit "Sign up", class: "btn float-right btnbackground", id: "font-color"%>
           </div>
         <% end %>
       </div>

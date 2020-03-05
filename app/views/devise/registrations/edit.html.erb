@@ -1,6 +1,6 @@
 <div class="container">
   <div class="d-flex justify-content-center h-100">
-    <div class="editUser card">
+    <div class="editUser card" id= "card">>
       <div class="card-header">
 				<h3>Edit <%= resource_name.to_s.humanize %></h3>
 			</div>
@@ -19,7 +19,7 @@
 
           <div class="field form-group">
             <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "New Password"  %>
-            <div class="remember font">
+            <div class="font-12" id="font-color">
               <i>Leave blank if you don't want to change it.</i>
               <% if @minimum_password_length%>
                 <em>[ min. characters: <%= @minimum_password_length %>]</em>
@@ -33,17 +33,14 @@
 
           <div class=" form-group field">
             <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "Current Password"  %>
-            <div class="remember font">
+            <div class="font-12" id="font-color">
               <i>Enter your current password to confirm your changes.</i>
             </div>
           </div>
 
-
-
           <div class="form-group">
-            <%= f.submit "Update", class: "btn float-right btn-default btnbackground" %>
+            <%= f.submit "Update", class: "btn float-right btnbackground", id: "font-color" %>
           </div>
-
         <% end %>
       </div>
 
@@ -51,9 +48,7 @@
         <div class="d-flex justify-content-center links">
           Unhappy?<%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %><br />
         </div>
-
 			</div>
-
     </div>
   </div>
 </div>

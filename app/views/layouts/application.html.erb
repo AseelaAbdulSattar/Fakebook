@@ -4,18 +4,17 @@
     <title>Fakebook</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark btnbackground">
-      <a class="navbar-brand" >Fakebook</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+			<a class="navbar-brand" >Fakebook</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item active">
@@ -39,7 +38,7 @@
             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               Options
             </a>
-            <ul class="dropdown-menu font-12" aria-labelledby="navbarDropdownMenuLink">
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <% if user_signed_in? %>
                 <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'dropdown-item' %></li>
                 <li><%= link_to 'Dashboard', admin_user_session_path, :class => "dropdown-item" %></li>

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="d-flex justify-content-center h-100">
-    <div class="card friends remember">
-      <div class="card-header">
+    <div class="card friends" id= "card">
+      <div class="card-header" id= "font-color">
 				<h3>You can send a Friend Request</h3>
         <%= paginate @users %>
         <div class="row form-group">
@@ -13,7 +13,7 @@
           </div>
         </div>
       </div>
-      <div class="card-body">
+      <div class="card-body" id= "font-color">
         <div class="row">
           <% @users.each do |user| %>
             <div class=" col-md-9">
@@ -23,7 +23,7 @@
               </div>
             </div>
             <div class=" col-md-3 form-group">
-              <%= button_to 'Add as Friend' , friendships_path(friend_id: user.id), method: :post, class: "font-12 buttonhome btn float-left btn-default btnbackground" %>
+              <%= button_to 'Add as Friend' , friendships_path(friend_id: user.id), method: :post, class: "font-12 buttonhome btn float-left btnbackground", id: "font-color" %>
             </div>
           <% end %>
         </div>

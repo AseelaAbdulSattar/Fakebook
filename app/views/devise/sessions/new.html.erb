@@ -1,6 +1,6 @@
 <div class="container">
   <div class="d-flex justify-content-center h-100">
-    <div class="card new">
+    <div class="card new" id= "card">>
       <div class="card-header">
 				<h3>Login</h3>
 			</div>
@@ -8,9 +8,6 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
           <div class="input-group form-group">
-            <%# <div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						</div> %>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email" %>
           </div>
 
@@ -26,7 +23,7 @@
           <% end %>
 
           <div class="form-group">
-            <%= f.submit "Login", class: "btn float-right btn-default btnbackground"%>
+            <%= f.submit "Login", class: "btn float-right btn-default btnbackground", id: "font-color"%>
           </div>
         <% end %>
       </div>

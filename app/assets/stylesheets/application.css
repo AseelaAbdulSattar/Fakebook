@@ -17,27 +17,37 @@ html, body {
 }
 
 .font-12 {
-  font-size: 12px !important;
+  font-size: 12px;
 }
 
 .card {
   margin-top: auto;
   margin-bottom: auto;
-  background-color: rgba(0,0,0,.4) !important;
+  background-color: rgba(0,0,0,.4);
+}
+#card {
+  background-color: rgba(0,0,0,.4);
 }
 
-.btnbackground, .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+#font-color {
+  color: white;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+  background-color: #2471A3;
+}
+
+.dropdown-item {
+  font-size: 12px;
+}
+
+.btnbackground {
   background-color: #2471A3 !important;
-  color: white !important;
 }
 
 .friends {
   height: 500px;
   width: 800px;
-}
-
-.dropdown-menu .divider {
-  background-color: rgb(22, 82, 122);
 }
 
 .new {
@@ -46,7 +56,7 @@ html, body {
 }
 
 .editUser {
-  height: 480px;
+  height: 500px;
   width: 300px;
 }
 
