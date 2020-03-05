@@ -1,7 +1,7 @@
 <div class="container">
   <div class="d-flex justify-content-center h-100">
-    <div class="card friends" id= "card">
-      <div class="card-header" id= "font-color">
+    <div class="card background friends">
+      <div class="card-header">
 				<% if @friendships_requests_sent.empty? %>
           <h3>No Request Sent</h3>
         <% else @friendships_requests_sent %>
@@ -17,7 +17,7 @@
             </div>
           </div>
       </div>
-      <div class="card-body" id= "font-color">
+      <div class="card-body">
           <%= render partial: "friend", collection: @friendships_requests_sent, locals: { is_friend: false }%>
         <%end%>
       </div>

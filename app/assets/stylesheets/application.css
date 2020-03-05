@@ -3,12 +3,13 @@ h1 {
 }
 /* @import url('https://fonts.googleapis.com/css?family=Numans'); */
 
-html, body {
-  background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+html,
+body {
+  background-image: url("http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
-  font-family: 'Numans', sans-serif;
+  font-family: "Numans", sans-serif;
 }
 
 .container {
@@ -16,33 +17,26 @@ html, body {
   align-content: center;
 }
 
-.font-12 {
+.font.font-12 {
   font-size: 12px;
-}
-
-.card {
-  margin-top: auto;
-  margin-bottom: auto;
-  background-color: rgba(0,0,0,.4);
-}
-#card {
-  background-color: rgba(0,0,0,.4);
-}
-
-#font-color {
   color: white;
 }
 
-.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-  background-color: #2471A3;
+.card.background {
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+}
+
+.btnbackground.blue,
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color: #2471a3;
 }
 
 .dropdown-item {
   font-size: 12px;
-}
-
-.btnbackground {
-  background-color: #2471A3 !important;
 }
 
 .friends {
@@ -86,7 +80,7 @@ html, body {
 
 .margin {
   margin-left: 48px;
-  }
+}
 
 .links a {
   margin-left: 2px;

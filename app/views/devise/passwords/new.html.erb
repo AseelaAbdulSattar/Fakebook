@@ -1,6 +1,6 @@
 <div class="container">
   <div class="d-flex justify-content-center h-100">
-    <div class="card forgot_password" id= "card">
+    <div class="card background forgot_password">
       <div class="card-header">
 				<h3>Forgot your password?</h3>
 			</div>
@@ -13,8 +13,8 @@
           </div>
 
           <div class="form-group">
-            <%= f.submit "Send", class: "btn float-right btn-default btnbackground" %>
-            <br /><%= f.label :Send_me_reset_password_instructions, class: " font-12", id: "font-color"%>
+            <%= f.submit "Send", class: "btn float-right btn-default btnbackground blue font font-12" %>
+            <br /><%= f.label :Send_me_reset_password_instructions, class: "font font-12"%>
           </div>
         <% end %>
       </div>
