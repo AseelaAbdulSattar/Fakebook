@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :friendships
+  has_many :posts
+  has_many :comments
   has_many :friendships_requests_received,-> { where( friendships: {status: nil})}, foreign_key: 'friend_id', class_name: 'Friendship'
   has_many :friends, -> { where( friendships: {status: true})}, through: :friendships
   has_many :friendships_requests_sent, -> { where( friendships: {status: nil})}, through: :friendships

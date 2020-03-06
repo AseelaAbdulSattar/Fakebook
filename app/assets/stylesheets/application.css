@@ -7,7 +7,7 @@ html,
 body {
   background-image: url("http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg");
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: auto;
   height: 100%;
   font-family: "Numans", sans-serif;
 }
@@ -17,13 +17,19 @@ body {
   align-content: center;
 }
 
+img {
+  width: 30px;
+  height: 30px;
+  /* border-radius: 50%; */
+}
+
 .font.font-12 {
   font-size: 12px;
   color: white;
 }
 
 .card.background {
-  margin-top: auto;
+  margin-top: 50px;
   margin-bottom: auto;
   background-color: rgba(0, 0, 0, 0.4);
   color: white;
@@ -37,6 +43,28 @@ body {
 
 .dropdown-item {
   font-size: 12px;
+}
+
+.home {
+  height: auto;
+  width: auto;
+}
+
+.home-bar {
+  margin-left: auto;
+  margin-right: 900px;
+  height: 450px;
+  width: 200px;
+}
+
+.button {
+  height: 50px;
+  width: 100px;
+}
+
+.test:after {
+  content: "\2807";
+  font-size: 20px;
 }
 
 .friends {
@@ -53,6 +81,27 @@ body {
   height: 500px;
   width: 300px;
 }
+.posts.wall {
+  height: auto;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.00001);
+}
+
+.posts.box {
+  height: auto;
+  width: 310px;
+}
+
+.posts.button {
+  height: auto;
+  width: 310px;
+}
+
+.dropdown-menu.box {
+  height: auto;
+  width: auto;
+  min-width: 50px;
+}
 
 .forgot_password {
   height: 370px;
@@ -66,6 +115,10 @@ body {
 .remember {
   color: white;
 }
+
+/* .btn {
+  white-space: normal;
+} */
 
 .remember input {
   /* width: 20px;
