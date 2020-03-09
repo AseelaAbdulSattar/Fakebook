@@ -20,7 +20,16 @@ body {
 img {
   width: 30px;
   height: 30px;
-  /* border-radius: 50%; */
+}
+
+.shadow-textarea textarea.form-control {
+  font-size: 12px;
+  padding-left: 0.8rem;
+  border-radius: 30px 30px 30px 30px;
+}
+
+.commentArea {
+  display: none;
 }
 
 .font.font-12 {
@@ -43,11 +52,6 @@ img {
 
 .dropdown-item {
   font-size: 12px;
-}
-
-.home {
-  height: auto;
-  width: auto;
 }
 
 .home-bar {
@@ -77,6 +81,11 @@ img {
   width: 280px;
 }
 
+.post.new {
+  height: 320px;
+  width: 480px;
+}
+
 .editUser {
   height: 500px;
   width: 300px;
@@ -89,7 +98,7 @@ img {
 
 .posts.box {
   height: auto;
-  width: 310px;
+  width: 480px;
 }
 
 .posts.button {

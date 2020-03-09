@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
-	def create
-		@post = Post.create(user_id: current_user.id, text: params[:post][:text])
+  def new
+    @post = Post.new
+  end
+
+  def create
+    @post = Post.create(user_id: current_user.id, text: params[:post][:text])
 		if @post.save
 			flash[:success] = "Post Created successfully"
       redirect_to @post
@@ -10,14 +14,12 @@ class PostsController < ApplicationController
     end
   end
 
+  # def add_comment
+  #   @comment = Comment.new()
+  # end
+
   def index
     @posts = Post.where(user_id: current_user.id).order(:user_id).page(params[:page])
-  end
-
-  def other_post
-    flash[:success] = 'Other posts before.'
-    @other_posts = Post.where.not(user_id: current_user.id)
-    flash[:success] = 'Other posts.'
   end
 
   def show

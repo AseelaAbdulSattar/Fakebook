@@ -1,15 +1,15 @@
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
-		<div class="card background forgot_password">
+		<div class="card background post new">
 			<div class="card-header">
-				<h3>New Post</h3>
+				<h3>Create a new post</h3>
 			</div>
 
 			<div class="card-body">
-				<%= render 'form' %>
+				<%= render partial: 'posts/form' %>
 			</div>
 			<div class="card-footer">
-				<%= button_to "Add image", posts_path(@post), { method: :get, class: "buttonhome btn float-left font font-12 btnbackground blue" } %>
+				<%# <%= button_to "Add image", posts_path(@post), { method: :get, class: "buttonhome btn float-left font font-12 btnbackground blue" } %>
 			</div>
 		</div>
 	</div>

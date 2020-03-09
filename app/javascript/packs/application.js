@@ -17,6 +17,26 @@ document.addEventListener("turbolinks:load", () => {
   $("#toast").toast("show");
 });
 
+// $(document).ready(function() {
+//   $(".showCommentbtn").click(function() {
+//     console.log("CALLED");
+//     $(".commentArea").toggle();
+//   });
+// });
+
+$(document).ready(function() {
+  $(".showCommentbtn").click(function() {
+    var btnId = $(this).attr("id");
+    $(".commentArea").each(function(index, value) {
+      var jsonInfoDataId = $(this).data("id");
+      if (btnId == jsonInfoDataId) {
+        console.log("CALLED");
+        $(this).toggle();
+      }
+    });
+  });
+});
+
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
