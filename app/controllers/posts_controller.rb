@@ -3,20 +3,15 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def create
-    @post = Post.create(user_id: current_user.id, text: params[:post][:text])
+	def create
+		@post = Post.create(user_id: current_user.id, text: params[:post][:text])
 		if @post.save
 			flash[:success] = "Post Created successfully"
-      redirect_to @post
 		else
 			flash[:error] = "Something Wrong"
-      redirect_to action: :index
-    end
-  end
-
-  # def add_comment
-  #   @comment = Comment.new()
-  # end
+		end
+		redirect_to :controller => 'home', :action => 'index'
+	end
 
   def index
     @posts = Post.where(user_id: current_user.id).order(:user_id).page(params[:page])
@@ -34,13 +29,12 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
       if @post.update!(post_params)
         flash[:success] = "Post successfully updated"
-        redirect_to @post
+        redirect_to :controller => 'home', :action => 'index'
       else
         flash[:error] = "Something went wrong"
         render 'edit'
       end
   end
-
 
   def destroy_post
     @post = Post.find(params[:id])
@@ -49,7 +43,7 @@ class PostsController < ApplicationController
     else
       flash[:error] = 'Something went wrong'
     end
-    redirect_to posts_url
+    redirect_to :controller => 'home', :action => 'index'
   end
 
   private

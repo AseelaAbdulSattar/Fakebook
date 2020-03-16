@@ -1,4 +1,25 @@
---start--
-<%= comment.commentable_type %>
-<%= comment.body %>
-<%= comment.commentable_id %>
+<div class="container">
+  <div class="post-comments">
+    <div class="media-heading">
+      <span><button class="btn btn-default btn-xs btnbackground blue showComment" id="comment<%= comment.id%>" type="button" ></button> </span>
+      <span class="label label-info"><%= comment.user.name %></span> <%=time_ago_in_words(comment.created_at)%> ago
+    </div>
+    <div class="media">
+      <div class=" comment" data-id="comment<%= comment.id %>">
+        <%= comment.body %>
+        <div class="comment-meta">
+          <span><a class=" showComment " role="button" >delete</a></span>
+          <span><a class=" showComment cursor" role="button" id="commentreply<%= comment.id%>" >Reply</a></span>
+          <div class="collapse form-group shadow-textarea comment " data-id="commentreply<%= comment.id %>">
+            <%= render partial: "posts/form_newcomment", locals: {commentable: comment, commentable_type: "Comment" } %>
+          </div>
+          <div class="row">
+            <% if comment.comments.exists?%>
+              <p>  </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
