@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-center h-100">
     <div class="card background friends">
       <div class="card-header">
-				<% if @friends.empty? %>
+				<% unless @friends.present? %>
           <h3>No Friends Exists</h3>
         <% else @friends %>
           <h3>Friends</h3>

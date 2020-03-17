@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  # after_action :check_post_presence, only: [:show, :edit]
 
   def new
     @post = Post.new
@@ -17,15 +16,6 @@ class PostsController < ApplicationController
 
   def index
     @posts = current_user.posts.order(:created_at).page(params[:page])
-  end
-
-  def check_post_presence(post)
-    if(post.present?)
-			@post = post
-		else
-			flash[:error] = "Post with 'Id = #{params[:id]} is not available"
-			redirect_to root_url
-    end
   end
 
   def show
@@ -60,8 +50,16 @@ class PostsController < ApplicationController
   end
 
   private
+  def check_post_presence(post)
+    if post.present?
+			@post = post
+		else
+			flash[:error] = "Post with 'Id = #{params[:id]} is not available"
+			redirect_to root_url
+    end
+  end
+
   def post_params
     params.require(:post).permit(:user_id, :text)
   end
-
 end

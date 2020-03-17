@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
 
 	def show
 		comment = Comment.find_by_id(params[:id])
-		if(comment.present?)
+		if comment.present?
 			@comment = comment
 		else
 			flash[:error] = "Comment with 'Id = #{params[:id]} not available"

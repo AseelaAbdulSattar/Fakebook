@@ -9,7 +9,7 @@
 				<%= render partial: 'posts/form' %>
 			</div>
 			<div class="card-footer">
-				<%# <%= button_to "Add image", posts_path(@post), { method: :get, class: "buttonhome btn float-left font font-12 btnbackground blue" } %>
+				<%= button_to "Add image", posts_path(@post), { method: :get, class: "buttonhome btn float-left font font-12 btnbackground blue", disabled: true } %>
 			</div>
 		</div>
 	</div>

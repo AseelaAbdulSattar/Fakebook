@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="post-comments">
 		<div class="row ">
-			<% if @comments.empty? %>
+			<% unless @comments.present? %>
 				<h3>No comments Exists</h3>
 			<% else @comments %>
 				<%= render partial: "comments/comment", collection: @comments%>
