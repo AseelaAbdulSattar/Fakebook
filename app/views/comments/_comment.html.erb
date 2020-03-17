@@ -14,8 +14,8 @@
             <%= render partial: "posts/form_newcomment", locals: {commentable: comment, commentable_type: "Comment" } %>
           </div>
           <div class="row">
-            <% if comment.comments.exists?%>
-              <p>  </p>
+            <% if comment.replies.present?%>
+              <%= render comment.replies%>
             <% end %>
           </div>
         </div>

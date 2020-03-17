@@ -1,5 +1,5 @@
 class Comment < ApplicationRecord
   belongs_to :commentable, polymorphic: true
   belongs_to :user
-  has_many :comments, as: :commentable
+  has_many :replies, as: :commentable, class_name: "Comment"
 end

@@ -21,23 +21,21 @@ document.addEventListener("turbolinks:load", () => {
   $("#toast").toast("show");
 });
 
-$(document).ready(function() {
-  $(".show-comment-btn").click(function() {
-    var btnId = $(this).attr("id");
-    $(".commentArea").each(function(index, value) {
-      var jsonInfoDataId = $(this).data("id");
-      if (btnId && btnId == jsonInfoDataId) {
-        $(this).toggle();
-      }
-    });
-    $.ajax({
-      url: "home/" + btnId + "/get_comments",
-      type: "get",
-      data: { id: btnId },
-      success: function(data) {
-        $("#get_comments_here" + btnId).html(data);
-      }
-    });
+$(document).on("click", ".show-comment-btn", function() {
+  var btnId = $(this).attr("id");
+  $(".commentArea").each(function(index, value) {
+    var jsonInfoDataId = $(this).data("id");
+    if (btnId && btnId == jsonInfoDataId) {
+      $(this).toggle();
+    }
+  });
+  $.ajax({
+    url: "home/" + btnId + "/get_comments",
+    type: "get",
+    data: { id: btnId },
+    success: function(data) {
+      $("#get_comments_here" + btnId).html(data);
+    }
   });
 });
 
