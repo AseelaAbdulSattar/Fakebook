@@ -16,7 +16,7 @@
               <a class="test" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
               <ul class="dropdown-menu box">
                 <li><%= link_to 'Edit', edit_post_path(post), { method: :get, :class => 'dropdown-item'} %></li>
-                <li><%= link_to 'Delete', destroy_post_post_path(post), method: :patch, data: { confirm: 'Are you sure?' }, :class => "dropdown-item" %></li>
+                <li><%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, :class => "dropdown-item" %></li>
               </ul>
             </div>
           </div>
@@ -31,7 +31,7 @@
             <%= button_to "Like", posts_path(@post), { method: :get, class: "buttonhome btn font font-12  ", disabled: true } %>
           </div>
           <div class=" col-md-4 border-right ">
-            <button class="buttonhome btn font font-12 showCommentbtn" id=<%= post.id%> type="button" >Comment</button>
+            <button class="buttonhome btn font font-12 show-comment-btn" id=<%= post.id%> type="button" >Comment</button>
           </div>
           <div class=" col-md-4 ">
             <%= button_to "Share", posts_path(@post), { method: :get, class: "  buttonhome btn font font-12 ", disabled: true} %>

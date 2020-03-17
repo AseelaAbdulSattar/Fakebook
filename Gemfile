@@ -52,9 +52,7 @@ end
 
 gem 'devise'
 gem 'pry'
-gem 'kaminari'
 gem 'activeadmin'
-gem 'coffee-rails'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

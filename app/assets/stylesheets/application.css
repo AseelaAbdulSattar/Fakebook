@@ -30,7 +30,7 @@ img {
   border-radius: 30px 30px 30px 30px;
 }
 
-.commentArea {
+.comment-area {
   display: none;
 }
 
@@ -127,7 +127,7 @@ img {
   min-width: 50px;
 }
 
-.forgot_password {
+.forgot-password {
   height: 370px;
   width: 290px;
 }

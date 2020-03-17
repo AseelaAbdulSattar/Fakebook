@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
 	def create
 		# byebug
-		@comment = current_user.comments.new(body: params[:comment][:body], commentable_type: params[:comment][:commentable_type], commentable_id: params[:comment][:commentable_id])
+		@comment = current_user.comments.new(comment_params)
 		if @comment.save
 			flash[:success] = "Comment successfully created"
-			redirect_to :controller => 'home', :action => 'index'
+			redirect_to root_url
 		else
 			flash[:error] = "Something went wrong"
 			render 'new'
@@ -12,14 +12,17 @@ class CommentsController < ApplicationController
 	end
 
 	def show
-		@comment = Comment.find(params[:id])
+		comment = Comment.find_by_id(params[:id])
+		if(comment.present?)
+			@comment = comment
+		else
+			flash[:error] = "Comment with 'Id = #{params[:id]} not available"
+			redirect_to root_url
+    end
 	end
 
-
-	def index
-		@comments = Comment.where(commentable_id: params[:post_id])
-	end
-
-
-
+	private
+  def comment_params
+    params.require(:comment).permit(:user_id, :body, :commentable_type, :commentable_id)
+  end
 end

@@ -4,13 +4,15 @@
 // that code so it'll be compiled.
 import "bootstrap";
 import "./src/application.scss";
+import $ from "jquery";
+global.$ = jQuery;
 
 require("@rails/ujs").start();
 require("turbolinks").start();
 require("@rails/activestorage").start();
 require("channels");
 require("jquery");
-//= require bootstrap
+require("packs/posts");
 
 document.addEventListener("turbolinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip();
@@ -20,13 +22,11 @@ document.addEventListener("turbolinks:load", () => {
 });
 
 $(document).ready(function() {
-  $(".showCommentbtn").click(function() {
-    console.log("CALLED showCommentbtn chk --0");
+  $(".show-comment-btn").click(function() {
     var btnId = $(this).attr("id");
     $(".commentArea").each(function(index, value) {
       var jsonInfoDataId = $(this).data("id");
-      if (btnId == jsonInfoDataId) {
-        console.log("CALLED");
+      if (btnId && btnId == jsonInfoDataId) {
         $(this).toggle();
       }
     });
@@ -35,23 +35,17 @@ $(document).ready(function() {
       type: "get",
       data: { id: btnId },
       success: function(data) {
-        console.log("data");
         $("#get_comments_here" + btnId).html(data);
-      },
-      error: function(data) {
-        console.log("error", data);
-        console.log(data);
       }
     });
   });
 });
 
-$(document).on("click", ".showComment", function() {
+$(document).on("click", ".show-comment", function() {
   var btnId = $(this).attr("id");
   $(".comment").each(function(index, value) {
     var jsonInfoDataId = $(this).data("id");
-    if (btnId == jsonInfoDataId) {
-      console.log("CALLED");
+    if (btnId && btnId === jsonInfoDataId) {
       $(this).toggle();
     }
   });

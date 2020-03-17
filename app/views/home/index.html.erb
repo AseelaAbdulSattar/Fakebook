@@ -11,9 +11,15 @@
 							<%= button_to 'Your Posts' , posts_path, method: :get, class: "my-2 button font font-12 buttonhome btn btnbackground blue" %>
 						</div>
 					</div>
-					<div class="row" id="my-posts"><%= render partial: "posts/post", collection: @posts%></div>
+					<div class="row" id="posts">
+						<% if @posts.present? %>
+							<%= render partial: "posts/post", collection:  @posts%>
+						<% else %>
+							<p> No Posts Available </p>
+						<% end %>
+					</div>
 				<div id="infinite-scrolling">
-					<%= paginate @posts %>
+					<%= will_paginate @posts %>
 				</div>
 			</div>
 		</div>

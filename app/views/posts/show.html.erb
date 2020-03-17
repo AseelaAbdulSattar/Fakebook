@@ -4,30 +4,30 @@
       <div class="row">
         <div class="col-md-10">
           <div class="card-header">
-            <h6><%=post.user.name%></h6>
-            <h6><%=post.created_at.strftime("%d-%m-%Y")%>, <%=post.created_at.strftime("%I:%M %p")%></h6>
+            <h6><%=@post.user.name%></h6>
+            <h6><%=@post.created_at.strftime("%d-%m-%Y")%>, <%=@post.created_at.strftime("%I:%M %p")%></h6>
           </div>
         </div>
         <div class="col-md-2">
           <div class=" dropdown">
             <a class="test" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
             <ul class="dropdown-menu box">
-              <li><%= link_to 'Edit', edit_post_path(post), { method: :get, :class => 'dropdown-item'} %></li>
-              <li><%= link_to 'Delete', destroy_post_post_path(post), method: :patch, data: { confirm: 'Are you sure?' }, :class => "dropdown-item" %></li>
+              <li><%= link_to 'Edit', edit_post_path(@post), { method: :get, :class => 'dropdown-item'} %></li>
+              <li><%= link_to 'Delete', destroy_post_post_path(@post), method: :patch, data: { confirm: 'Are you sure?' }, :class => "dropdown-item" %></li>
             </ul>
           </div>
         </div>
       </div>
       <div class="card-body text-center ">
-        <div class="row"><%= post.text%></div>
+        <div class="row"><%= @post.text%></div>
         <div class="row">
-          <div class=" col-md-6">User: <%= post.user_id%></div>
-          <div class=" col-md-6">id: <%= post.id%></div>
+          <div class=" col-md-6">User: <%= @post.user_id%></div>
+          <div class=" col-md-6">id: <%= @post.id%></div>
         </div>
       </div>
       <div class="card-footer text-right">
-        <%= button_to "Like", posts_path(post), { method: :get, class: "buttonhome btn float-left font font-12 btnbackground blue" } %>
-        <%= button_to "Comment", posts_path(post), { method: :get, class: "  buttonhome btn font font-12 btnbackground blue" } %>
+        <%= button_to "Like", posts_path(@post), { method: :get, class: "buttonhome btn float-left font font-12 btnbackground blue" } %>
+        <%= button_to "Comment", posts_path(@post), { method: :get, class: "  buttonhome btn font font-12 btnbackground blue" } %>
 			</div>
     </div>
   </div>

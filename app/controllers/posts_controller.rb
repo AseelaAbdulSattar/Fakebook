@@ -1,49 +1,62 @@
 class PostsController < ApplicationController
+  # after_action :check_post_presence, only: [:show, :edit]
+
   def new
     @post = Post.new
   end
 
 	def create
-		@post = Post.create(user_id: current_user.id, text: params[:post][:text])
+		@post = current_user.posts.create(post_params)
 		if @post.save
 			flash[:success] = "Post Created successfully"
 		else
 			flash[:error] = "Something Wrong"
 		end
-		redirect_to :controller => 'home', :action => 'index'
+		redirect_to root_url
 	end
 
   def index
-    @posts = Post.where(user_id: current_user.id).order(:user_id).page(params[:page])
+    @posts = current_user.posts.order(:created_at).page(params[:page])
+  end
+
+  def check_post_presence(post)
+    if(post.present?)
+			@post = post
+		else
+			flash[:error] = "Post with 'Id = #{params[:id]} is not available"
+			redirect_to root_url
+    end
   end
 
   def show
-    @post = Post.find(params[:id])
+    post = Post.find_by_id(params[:id])
+    check_post_presence(post)
   end
 
   def edit
-    @post = Post.find(params[:id])
+    post = Post.find_by_id(params[:id])
+    check_post_presence(post)
   end
 
   def update
     @post = Post.find(params[:id])
-      if @post.update!(post_params)
+      if @post && @post.update!(post_params)
         flash[:success] = "Post successfully updated"
-        redirect_to :controller => 'home', :action => 'index'
+        redirect_to root_url
       else
         flash[:error] = "Something went wrong"
         render 'edit'
       end
   end
 
-  def destroy_post
+  def destroy
     @post = Post.find(params[:id])
-    if @post.destroy
+    if @post && @post.destroy
       flash[:success] = 'Post was successfully deleted.'
     else
       flash[:error] = 'Something went wrong'
     end
-    redirect_to :controller => 'home', :action => 'index'
+    redirect_to root_url
   end
 
   private
