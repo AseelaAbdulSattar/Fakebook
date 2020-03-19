@@ -2,12 +2,13 @@ class CommentsController < ApplicationController
 
 	def create
 		@comment = current_user.comments.new(comment_params)
-		if @comment.save
-			flash[:success] = "Comment successfully created"
-			redirect_to root_url
-		else
-			flash[:error] = "Something went wrong"
-			render 'new'
+		respond_to do |format|
+			if @comment.save
+				format.js
+				format.html { redirect_to root_url, notice: 'Comment was successfully created.'}
+			else
+				format.html { render 'new', notice: 'Something went wrong.' }
+			end
 		end
 	end
 
@@ -23,12 +24,15 @@ class CommentsController < ApplicationController
 
 	def destroy
     @comment = current_user.comments.find_by_id(params[:id])
-    if @comment.present? && @comment.destroy
-      flash[:success] = 'Comment was successfully deleted.'
-    else
-      flash[:error] = 'Something went wrong'
-    end
-    redirect_to root_url
+		respond_to do |format|
+			if @comment.present? && @comment.destroy
+				format.html { redirect_to root_url, notice: 'Comment was successfully deleted.' }
+			else
+				format.html { redirect_to root_url, error: 'Something went wrong.' }
+			end
+			format.json { head :no_content }
+			format.js   { render :layout => false }
+   end
   end
 
 	private

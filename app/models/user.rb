@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   self.per_page = 5
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -30,5 +29,4 @@ class User < ApplicationRecord
   def total_Friends
     friends.count
   end
-
 end

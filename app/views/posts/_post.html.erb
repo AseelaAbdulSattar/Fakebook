@@ -1,6 +1,6 @@
 <div class="container">
   <div class="d-flex justify-content-center h-100">
-    <div class="card background padding posts box my-2 ">
+    <div class="card background padding posts box my-2 all-comments-show-hide">
       <div class="card-header ">
         <div class="row">
           <div class="col-md-10">
@@ -15,10 +15,10 @@
             <div class=" dropdown">
               <a class="test" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
               <ul class="dropdown-menu box">
-                <li><%= button_to 'Report', edit_post_path(post), { method: :get, :class => 'dropdown-item', disabled: true } %></li>
+                <li><%= button_to 'Report', edit_post_path(post), { method: :get, class: 'dropdown-item', disabled: true } %></li>
                 <% if current_user && current_user == post.user %>
-                <li><%= link_to 'Edit', edit_post_path(post), { method: :get, :class => 'dropdown-item'} %></li>
-                <li><%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, :class => "dropdown-item" %></li>
+                <li><%= link_to 'Edit', edit_post_path(post), { method: :get, class: 'dropdown-item'} %></li>
+                <li><%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "delete_post dropdown-item" %></li>
                 <% end %>
               </ul>
             </div>
@@ -31,21 +31,21 @@
       <div class="card-footer text-center">
         <div class="row">
           <div class=" col-md-4 border-right">
-            <%= button_to "Like", posts_path(@post), { method: :get, class: "buttonhome btn font font-12  ", disabled: true } %>
+            <%= button_to "Like", posts_path(post), { method: :get, class: " btn font font-12  ", disabled: true } %>
           </div>
           <div class=" col-md-4 border-right ">
-            <button class="buttonhome btn font font-12 show-comment-btn" id=<%= post.id%> type="button" >Comment</button>
+            <button class=" btn font font-12 show-comment-btn" id=<%= post.id%> type="button" >Comment</button>
           </div>
           <div class=" col-md-4 ">
-            <%= button_to "Share", posts_path(@post), { method: :get, class: "  buttonhome btn font font-12 ", disabled: true} %>
+            <%= button_to "Share", posts_path(post), { method: :get, class: "   btn font font-12 ", disabled: true} %>
           </div>
         </div>
 			</div>
-      <div class="card-footer commentArea" data-id=<%= post.id %>>
+      <div class="card-footer comment-area" data-id=<%= post.id %>>
         <div class="form-group shadow-textarea">
           <%= render partial: "posts/form_newcomment", locals: {commentable: post, commentable_type: "Post" } %>
         </div>
-        <div class=" row" id = "get_comments_here<%= post.id %>"> </div>
+        <div class=" row" id = "comments_section<%= post.id %>"> </div>
       </div>
     </div>
   </div>

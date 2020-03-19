@@ -2,10 +2,8 @@
   <div class="d-flex justify-content-center h-100">
     <div class="card background friends">
       <div class="card-header">
-				<% if !@friends.present? %>
-          <h3>No Friends Exists</h3>
-        <% else @friends %>
-          <h3>Friends</h3>
+				<% if @friends.present? %>
+        <h3>Friends</h3>
           <%= will_paginate @friends %>
           <div class="row">
             <div class=" col-md-9">
@@ -16,10 +14,14 @@
               </div>
             </div>
           </div>
+        <% else %>
+          <h3>No Friends Exists</h3>
+        <% end %>
       </div>
       <div class="card-body">
+        <% if @friends.present? %>
           <%= render partial: "friend", collection: @friends, locals: { is_friend: true }%>
-        <%end%>
+        <% end %>
 			</div>
       <div class="card-footer">
         <%= will_paginate @friends %>

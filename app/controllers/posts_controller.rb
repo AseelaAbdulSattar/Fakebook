@@ -1,17 +1,18 @@
 class PostsController < ApplicationController
-
   def new
     @post = Post.new
   end
 
 	def create
-		@post = current_user.posts.create(post_params)
-		if @post.save
-			flash[:success] = "Post Created successfully"
-		else
-			flash[:error] = "Something Wrong"
+    @post = current_user.posts.new(post_params)
+    respond_to do |format|
+			if @post.save
+				format.js
+				format.html { redirect_to posts_path, notice: 'Post was successfully created.'}
+			else
+				format.html { render 'new', notice: 'Something went wrong.' }
+			end
 		end
-		redirect_to root_url
 	end
 
   def index
@@ -20,12 +21,13 @@ class PostsController < ApplicationController
 
   def show
     post = Post.find_by_id(params[:id])
-    check_post_presence(post)
+    check_post_presence(post) # before_actions
   end
 
   def edit
     post = Post.find_by_id(params[:id])
     check_post_presence(post)
+    # before_actions
   end
 
   def update
@@ -46,7 +48,12 @@ class PostsController < ApplicationController
     else
       flash[:error] = 'Something went wrong'
     end
-    redirect_to root_url
+
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.json { head :no_content }
+      format.js   { render :layout => false }
+   end
   end
 
   private
@@ -62,5 +69,4 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:id, :user_id, :text, comments_attributes: [:user_id, :body, :commentable_type, :commentable_id, :_destroy])
   end
-
 end

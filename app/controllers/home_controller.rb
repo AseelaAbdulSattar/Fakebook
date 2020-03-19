@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
-
   skip_before_action :authenticate_user!
+
   def index
     @users = User.all.order(:name).page(params[:page])
     @posts = Post.paginate(page: params[:page]).order(:created_at)
@@ -11,15 +11,14 @@ class HomeController < ApplicationController
     end
   end
 
-  def get_comments
+  def post_comments
     post = Post.find_by_id(params[:id])
     if post.present?
       @comments = post.comments
-      render partial: "get_comments"
+      render partial: "post_comments"
 		else
 			flash[:error] = "Post with 'Id = #{params[:id]} not available"
 			redirect_to root_url
     end
   end
-
 end

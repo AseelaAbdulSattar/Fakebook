@@ -1,15 +1,15 @@
 <div class="container">
-  <div class="post-comments">
+  <div class="post-comments all-comments-show-hide">
     <div class="media-heading">
-      <span><button class="btn btn-default btn-xs btnbackground blue show-comment" id="comment<%= comment.id%>" type="button" ></button> </span>
-      <span class="label label-info"><%= comment.user.name %></span> <%=time_ago_in_words(comment.created_at)%> ago
+      <span><button class="btn btn-default btn-xs btn-background blue show-comment" id="comment<%= comment.id%>" type="button" ></button> </span>
+      <span class="label label-info"><%= comment.user.name %></span> posted <%=time_ago_in_words(comment.created_at)%> ago
     </div>
     <div class="media">
       <div class=" comment" data-id="comment<%= comment.id %>">
         <%= comment.body %>
         <div class="comment-meta">
           <% if current_user && current_user == comment.user %>
-          <span><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' }, class: "show-comment" %></span>
+          <span><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "delete_comment show-comment" %></span>
           <% end %>
           <span><a class="show-comment cursor" role="button" id="commentreply<%= comment.id%>" >Reply</a></span>
           <div class="collapse form-group shadow-textarea comment " data-id="commentreply<%= comment.id %>">

@@ -2,9 +2,7 @@
   <div class="d-flex justify-content-center h-100">
     <div class="card background friends">
       <div class="card-header">
-				<% if !@friendships_requests_sent.present? %>
-          <h3>No Request Sent</h3>
-        <% else @friendships_requests_sent %>
+				<% if @friendships_requests_sent.present? %>
           <h3>Friend Request Sent</h3>
           <%= will_paginate @friendships_requests_sent %>
           <div class="row">
@@ -16,10 +14,14 @@
               </div>
             </div>
           </div>
+        <% else %>
+          <h3>No Request Sent</h3>
+        <% end %>
       </div>
       <div class="card-body">
+        <% if @friendships_requests_sent.present? %>
           <%= render partial: "friend", collection: @friendships_requests_sent, locals: { is_friend: false }%>
-        <%end%>
+        <% end %>
       </div>
       <div class="card-footer">
         <%= will_paginate @friendships_requests_sent %>

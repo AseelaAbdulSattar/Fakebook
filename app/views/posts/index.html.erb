@@ -4,13 +4,13 @@
 			<div class="card-header">
 			</div>
 			<div class="card-body">
-				<% if !@posts.present? %>
-					<h3>No Posts Exists</h3>
-				<% else @posts %>
-					<h3>Posts</h3>
+				<% if @posts.present? %>
+					<h3> Posts </h3>
 					<%= paginate @posts %>
-				<%= render partial: "post", collection: @posts%>
-				<%end%>
+					<%= render partial: "post", collection: @posts %>
+				<% else %>
+					<h3> No Posts Exists </h3>
+				<% end %>
 			</div>
 			<div class="card-footer">
 				<%= paginate @posts %>

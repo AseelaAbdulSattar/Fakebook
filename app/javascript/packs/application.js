@@ -12,39 +12,12 @@ require("turbolinks").start();
 require("@rails/activestorage").start();
 require("channels");
 require("jquery");
-require("packs/posts");
+require("packs/posts/index");
+require("packs/home/index/button_click");
 
 document.addEventListener("turbolinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip();
   $('[data-toggle="popover"]').popover();
   $(".toast").toast({ autohide: false });
   $("#toast").toast("show");
-});
-
-$(document).on("click", ".show-comment-btn", function() {
-  var btnId = $(this).attr("id");
-  $(".commentArea").each(function(index, value) {
-    var jsonInfoDataId = $(this).data("id");
-    if (btnId && btnId == jsonInfoDataId) {
-      $(this).toggle();
-    }
-  });
-  $.ajax({
-    url: "home/" + btnId + "/get_comments",
-    type: "get",
-    data: { id: btnId },
-    success: function(data) {
-      $("#get_comments_here" + btnId).html(data);
-    }
-  });
-});
-
-$(document).on("click", ".show-comment", function() {
-  var btnId = $(this).attr("id");
-  $(".comment").each(function(index, value) {
-    var jsonInfoDataId = $(this).data("id");
-    if (btnId && btnId === jsonInfoDataId) {
-      $(this).toggle();
-    }
-  });
 });

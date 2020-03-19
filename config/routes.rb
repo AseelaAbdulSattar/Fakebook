@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
   resources :home do
     member do
-      get :get_comments
+      get :post_comments
     end
   end
   resources :friendships do
