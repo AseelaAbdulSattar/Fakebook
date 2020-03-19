@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-center h-100">
     <div class="card background friends">
       <div class="card-header">
-        <% unless @friends_req.present? %>
+        <% if !@friends_req.present? %>
           <h3>No Friend Requests</h3>
         <% else @friends_req %>
           <h3>Friend Requests</h3>

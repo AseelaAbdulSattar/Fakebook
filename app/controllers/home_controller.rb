@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+
   skip_before_action :authenticate_user!
   def index
     @users = User.all.order(:name).page(params[:page])
@@ -20,4 +21,5 @@ class HomeController < ApplicationController
 			redirect_to root_url
     end
   end
+
 end

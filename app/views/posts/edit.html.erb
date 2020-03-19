@@ -4,12 +4,11 @@
 			<div class="card-header">
 				<h3>Update Post</h3>
 			</div>
-
 			<div class="card-body">
 				<%= render 'form' %>
 			</div>
 			<div class="card-footer">
-				<%# <%= button_to "Add image", posts_path(@post), { method: :get, class: "buttonhome btn float-left font font-12 btnbackground blue" } %>
+				<%= button_to "Add image", posts_path(@post), { method: :get, class: "buttonhome btn float-left font font-12 btnbackground blue", disabled: true}%>
 			</div>
 		</div>
 	</div>

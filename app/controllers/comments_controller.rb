@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
+
 	def create
-		# byebug
 		@comment = current_user.comments.new(comment_params)
 		if @comment.save
 			flash[:success] = "Comment successfully created"
@@ -34,5 +34,6 @@ class CommentsController < ApplicationController
 	private
   def comment_params
     params.require(:comment).permit(:user_id, :body, :commentable_type, :commentable_id)
-  end
+	end
+
 end

@@ -62,4 +62,5 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:id, :user_id, :text, comments_attributes: [:user_id, :body, :commentable_type, :commentable_id, :_destroy])
   end
+
 end

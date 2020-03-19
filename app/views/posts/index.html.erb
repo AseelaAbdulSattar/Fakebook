@@ -4,7 +4,7 @@
 			<div class="card-header">
 			</div>
 			<div class="card-body">
-				<% unless @posts.present? %>
+				<% if !@posts.present? %>
 					<h3>No Posts Exists</h3>
 				<% else @posts %>
 					<h3>Posts</h3>
