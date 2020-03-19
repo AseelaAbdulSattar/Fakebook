@@ -8,7 +8,9 @@
       <div class=" comment" data-id="comment<%= comment.id %>">
         <%= comment.body %>
         <div class="comment-meta">
-          <span><a class="show-comment " role="button" >delete</a></span>
+          <% if current_user && current_user == comment.user %>
+          <span><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' }, class: "show-comment" %></span>
+          <% end %>
           <span><a class="show-comment cursor" role="button" id="commentreply<%= comment.id%>" >Reply</a></span>
           <div class="collapse form-group shadow-textarea comment " data-id="commentreply<%= comment.id %>">
             <%= render partial: "posts/form_newcomment", locals: {commentable: comment, commentable_type: "Comment" } %>
@@ -23,3 +25,5 @@
     </div>
   </div>
 </div>
+
+<%# <li><%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, :class => "dropdown-item" % ></li> %>
