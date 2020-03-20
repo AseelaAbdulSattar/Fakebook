@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="post-comments all-comments-show-hide">
+    <div class="media-heading">
+      <span><button class="btn btn-default btn-xs btn-background blue show-comment" id="comment<%= comment.id%>" type="button" ></button> </span>
+      <span class="label label-info"><%= comment.user.name %></span> posted <%=time_ago_in_words(comment.created_at)%> ago
+    </div>
+    <div class="media">
+      <div class=" comment" data-id="comment<%= comment.id %>">
+        <%= comment.body %>
+        <div class="comment-meta" data-comment-id="<%= comment.id %>">
+          <% if current_user && current_user == comment.user %>
+          <span><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "delete_comment show-comment" %></span>
+          <% end %>
+          <span><a class="show-comment cursor" role="button" id="commentreply<%= comment.id%>" >Reply</a></span>
+          <div class="collapse form-group shadow-textarea comment " data-id="commentreply<%= comment.id %>">
+            <%= render partial: "posts/form_newcomment", locals: {commentable: comment, commentable_type: "Comment" } %>
+          </div>
+          <div class="row">
+            <% if comment.replies.present?%>
+              <%= render comment.replies%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

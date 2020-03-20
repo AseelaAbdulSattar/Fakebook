@@ -1,0 +1,56 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.cursor {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.00001);
+}
+
+.post.new {
+  height: 320px;
+  width: 480px;
+}
+
+.posts.wall {
+  height: auto;
+  width: 100%;
+}
+
+.posts.box {
+  height: auto;
+  width: 480px;
+}
+
+.posts.button {
+  height: auto;
+  width: 310px;
+}
+
+.post-comments {
+  padding-bottom: 9px;
+  margin: 5px 0 5px;
+}
+
+.post-comments .comment-meta {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 5px;
+}
+
+.post-comments .media {
+  border-left: 1px dotted rgb(230, 213, 213);
+  border-bottom: 1px dotted rgb(235, 227, 227);
+  margin-bottom: 5px;
+  padding-left: 10px;
+}
+
+.post-comments .comment-meta a {
+  font-size: 12px;
+  color: grey;
+  font-weight: bolder;
+  margin-right: 5px;
+}
+
+.post-comments .media-heading {
+  font-size: 12px;
+  color: grey;
+}

@@ -1,5 +1,4 @@
 class Friendship < ApplicationRecord
-
   belongs_to :user
   belongs_to :friend, class_name: "User"
   belongs_to :friendships_requests_sent, foreign_key: "friend_id", class_name: "User"
@@ -35,5 +34,4 @@ class Friendship < ApplicationRecord
   def inverse_options
     { friend_id: user_id, user_id: friend_id, status: true }
   end
-
 end

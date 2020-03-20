@@ -1,0 +1,15 @@
+var message = "<%= escape_javascript(@message) %>";
+var responseText = '';
+$('#post-form').on("ajax:success", function(e, data, status, xhr){
+  if (message == 'success') {
+    responseText = '';
+  } else if (message == 'invalid') {
+    responseText = 'Something is Wrong.';
+  } else {
+    responseText = 'Please try again later.';
+  }
+  $('#posts__response-text').val(responseText);
+  $('#posts').prepend("<%= j render @post%>");
+}).on("ajax:error", function(e, data, status, xhr){
+  $('#posts__response-text').val('Please try again later.');
+});

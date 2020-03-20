@@ -1,0 +1,9 @@
+<div class="container">
+	<div class="row ">
+		<% if @comments.present? %>
+			<%= render partial: "comments/comment", collection: @comments%>
+		<% else %>
+			<h6> No comments Exists </h6>
+		<% end %>
+	</div>
+</div>

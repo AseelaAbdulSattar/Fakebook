@@ -5,7 +5,15 @@ Rails.application.routes.draw do
   root to: "home#index"
   direct :homepage do "#{root_url}" end
 
-  resources :home
+  resources :home, :posts
+  resources :posts, :comments do
+    :comments
+  end
+  resources :home do
+    member do
+      get :post_comments
+    end
+  end
   resources :friendships do
     member do
       post :accept_request

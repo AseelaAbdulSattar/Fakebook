@@ -1,0 +1,12 @@
+<%= form_for :comment, url: comments_path, remote: true, html: { class: "comment-form" ,id: 'comment-form'} do |f| %>
+  <div class="row">
+    <div class="col-md-10">
+      <%= f.text_area :body, class:"form-control", id: "comments__response-text#{commentable.id}", rows: "1", placeholder: "Add comment here..."%>
+      <%= f.hidden_field :commentable_id, value: "#{commentable.id}" %>
+      <%= f.hidden_field :commentable_type, value: "#{commentable_type}" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.submit "Submit", class: "btn btn-background blue font font-12" %>
+    </div>
+  </div>
+<% end %>

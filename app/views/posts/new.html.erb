@@ -1,0 +1,15 @@
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card background post new">
+			<div class="card-header">
+				<h3>Create a new post</h3>
+			</div>
+			<div class="card-body">
+				<%= render partial: 'posts/form' %>
+			</div>
+			<div class="card-footer">
+				<%= button_to "Add image", posts_path(@post), { method: :get, class: "btn float-left font font-12 btn-background blue", disabled: true } %>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card background posts wall">
+			<div class="card-header">
+			</div>
+			<div class="card-body">
+				<% if @posts.present? %>
+					<h3> Posts </h3>
+					<%= paginate @posts %>
+					<%= render partial: "post", collection: @posts %>
+				<% else %>
+					<h3> No Posts Exists </h3>
+				<% end %>
+			</div>
+			<div class="card-footer">
+				<%= paginate @posts %>
+			</div>
+		</div>
+	</div>
+</div>

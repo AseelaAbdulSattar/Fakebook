@@ -52,7 +52,8 @@ end
 
 gem 'devise'
 gem 'pry'
-gem 'kaminari'
 gem 'activeadmin'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

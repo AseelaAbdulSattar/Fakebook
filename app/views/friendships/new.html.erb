@@ -3,7 +3,7 @@
     <div class="card background friends">
       <div class="card-header">
 				<h3>You can send a Friend Request</h3>
-        <%= paginate @users %>
+        <%= will_paginate @users %>
         <div class="row form-group">
           <div class=" col-md-9">
             <div class="row">
@@ -23,13 +23,13 @@
               </div>
             </div>
             <div class=" col-md-3 form-group">
-              <%= button_to 'Add as Friend' , friendships_path(friend_id: user.id), method: :post, class: "font font-12 buttonhome btn float-left btnbackground blue" %>
+              <%= button_to 'Add as Friend' , friendships_path(friend_id: user.id), method: :post, class: "font font-12 btn float-left btn-background blue" %>
             </div>
           <% end %>
         </div>
       </div>
       <div class="card-footer">
-				<%= paginate @users %>
+				<%= will_paginate @users %>
 			</div>
     </div>
   </div>
