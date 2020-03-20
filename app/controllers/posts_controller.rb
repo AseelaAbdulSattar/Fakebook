@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :check_post_presence, only: [:show, :edit, :update, :destroy]
+
   def new
     @post = Post.new
   end
@@ -6,11 +8,13 @@ class PostsController < ApplicationController
 	def create
     @post = current_user.posts.new(post_params)
     respond_to do |format|
-			if @post.save
+      if @post.save
+        @message = 'success'
 				format.js
 				format.html { redirect_to posts_path, notice: 'Post was successfully created.'}
-			else
-				format.html { render 'new', notice: 'Something went wrong.' }
+      else
+        @message = 'invalid'
+				format.html { render 'new', error: 'Something went wrong.' }
 			end
 		end
 	end
@@ -20,19 +24,13 @@ class PostsController < ApplicationController
   end
 
   def show
-    post = Post.find_by_id(params[:id])
-    check_post_presence(post) # before_actions
   end
 
   def edit
-    post = Post.find_by_id(params[:id])
-    check_post_presence(post)
-    # before_actions
   end
 
   def update
-    @post = Post.find(params[:id])
-      if @post && @post.update!(post_params)
+      if @post.update!(post_params)
         flash[:success] = "Post successfully updated"
         redirect_to root_url
       else
@@ -42,22 +40,21 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    if @post && @post.destroy
-      flash[:success] = 'Post was successfully deleted.'
-    else
-      flash[:error] = 'Something went wrong'
-    end
-
     respond_to do |format|
-      format.html { redirect_to root_url }
+      if @post.destroy
+        format.html { redirect_to root_url, notice: 'Post was successfully deleted.' }
+
+      else
+        format.html { redirect_to root_url, notice: 'Something went wrong.' }
+      end
       format.json { head :no_content }
-      format.js   { render :layout => false }
+      format.js   { render layout: false }
    end
   end
 
   private
-  def check_post_presence(post)
+  def check_post_presence
+    post = Post.find_by_id(params[:id])
     if post.present?
 			@post = post
 		else

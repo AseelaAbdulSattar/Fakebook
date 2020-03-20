@@ -1,1 +1,17 @@
-$('.comment-area').('#comments_section').append("<%= j render @comment%>");
+var message = "<%= escape_javascript(@message) %>";
+console.log(message);
+var responseText = '';
+$('#comment-form').on("ajax:success", function(e, data, status, xhr){
+  if (message == 'success') {
+    responseText = '';
+  } else if (message == 'invalid') {
+    responseText = 'Something is Wrong.';
+  } else {
+    responseText = 'Please try again later.';
+  }
+  $('#comments__response-text').val(responseText);
+  $('.comment-area').append("<%= j render @comment%>");
+}).on("ajax:error", function(e, data, status, xhr){
+  $('#handraisers__response-text').val('Please try again later.');
+});
+

@@ -4,9 +4,11 @@ class CommentsController < ApplicationController
 		@comment = current_user.comments.new(comment_params)
 		respond_to do |format|
 			if @comment.save
+				@message = 'success'
 				format.js
 				format.html { redirect_to root_url, notice: 'Comment was successfully created.'}
 			else
+				@message = 'invalid'
 				format.html { render 'new', notice: 'Something went wrong.' }
 			end
 		end
@@ -31,7 +33,7 @@ class CommentsController < ApplicationController
 				format.html { redirect_to root_url, error: 'Something went wrong.' }
 			end
 			format.json { head :no_content }
-			format.js   { render :layout => false }
+			format.js   { render layout: false }
    end
   end
 

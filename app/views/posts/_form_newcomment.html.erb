@@ -1,7 +1,7 @@
-<%= form_for :comment, url: comments_path, remote: true do |f| %>
+<%= form_for :comment, url: comments_path, remote: true, html: { id: 'comment-form'} do |f| %>
   <div class="row">
     <div class="col-md-10">
-      <%= f.text_area :body, class:"form-control", rows: "1", placeholder: "Add comment here..."%>
+      <%= f.text_area :body, class:"form-control", id: 'comments__response-text', rows: "1", placeholder: "Add comment here..."%>
       <%= f.hidden_field :commentable_id, value: "#{commentable.id}" %>
       <%= f.hidden_field :commentable_type, value: "#{commentable_type}" %>
     </div>
