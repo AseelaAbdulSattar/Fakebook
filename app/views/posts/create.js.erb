@@ -9,7 +9,7 @@ $('#post-form').on("ajax:success", function(e, data, status, xhr){
     responseText = 'Please try again later.';
   }
   $('#posts__response-text').val(responseText);
-  $('#posts').append("<%= j render @post%>");
+  $('#posts').prepend("<%= j render @post%>");
 }).on("ajax:error", function(e, data, status, xhr){
   $('#posts__response-text').val('Please try again later.');
 });

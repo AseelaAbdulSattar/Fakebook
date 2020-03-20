@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
     @users = User.all.order(:name).page(params[:page])
-    @posts = Post.paginate(page: params[:page]).order(:created_at)
+    @posts = Post.paginate(page: params[:page]).order("created_at DESC")
     respond_to do |format|
       format.csv { send_data @users.to_csv , filename: "users-#{Date.today}.csv" }
       format.html
