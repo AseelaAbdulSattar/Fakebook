@@ -45,7 +45,7 @@
         <div class="form-group shadow-textarea">
           <%= render partial: "posts/form_newcomment", locals: {commentable: post, commentable_type: "Post" } %>
         </div>
-        <div class=" row" id = "comments_section<%= post.id %>"> </div>
+        <div class=" row" id="comments_section<%= post.id %>" data-post-id="<%= post.id %>"> </div>
       </div>
     </div>
   </div>

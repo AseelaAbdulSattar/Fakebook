@@ -12,8 +12,8 @@
           <div class=" dropdown">
             <a class="test" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
             <ul class="dropdown-menu box">
-              <li><%= link_to 'Edit', edit_post_path(@post), { method: :get, :class => 'dropdown-item'} %></li>
-              <li><%= link_to 'Delete', destroy_post_post_path(@post), method: :patch, data: { confirm: 'Are you sure?' }, :class => "dropdown-item" %></li>
+              <li><%= link_to 'Edit', edit_post_path(@post), { method: :get, class: 'dropdown-item'} %></li>
+              <li><%= link_to 'Delete', post_path(@post), method: :patch, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %></li>
             </ul>
           </div>
         </div>
