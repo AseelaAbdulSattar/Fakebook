@@ -7,10 +7,15 @@
     <div class="media">
       <div class=" comment" data-id="comment<%= comment.id %>">
         <%= comment.body %>
+        <% if comment.likes.count > 0 %>
+          <div><i class="fa fa-thumbs-up" aria-hidden="true"><%= comment.likes.count %></i></div>
+        <% end %>
         <div class="comment-meta" data-comment-id="<%= comment.id %>">
+          <span><%= link_to "Like", like_post_and_comment_home_path(comment.id), method: :post, class: " show-comment ", remote: true, likeable_type: "Comment", likeable_id: comment.id  %></span>
           <% if current_user && current_user == comment.user %>
           <span><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "delete_comment show-comment" %></span>
           <% end %>
+
           <span><a class="show-comment cursor" role="button" id="commentreply<%= comment.id%>" >Reply</a></span>
           <div class="collapse form-group shadow-textarea comment " data-id="commentreply<%= comment.id %>">
             <%= render partial: "posts/form_newcomment", locals: {commentable: comment, commentable_type: "Comment" } %>

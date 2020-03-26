@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :home do
     member do
       get :post_comments
+      post :like_post_and_comment
     end
   end
   resources :friendships do

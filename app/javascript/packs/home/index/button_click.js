@@ -25,6 +25,25 @@ $(document).on("click", ".show-comment-btn", function() {
     }
   });
 });
+$(document).ready(function() {
+  console.log("check 45435451");
+  clicked = true;
+  likeButton = $(document).find(".like-p");
+  console.log(likeButton);
+  likeButton.on("click", () => {
+    console.log("hello");
+  });
+  // $(document).on("click", ".like-p", function() {
+  //   if (clicked) {
+  //     console.log("check 1");
+  //     $(this).css({ "font-color": "blue" });
+  //     clicked = false;
+  //   } else {
+  //     $(this).css("background-color", "blue");
+  //     clicked = true;
+  //   }
+  // });
+});
 // $(function() {
 //   $("#my_form").on("submit", function(event) {
 //     $.ajax({

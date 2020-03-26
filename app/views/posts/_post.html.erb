@@ -25,13 +25,18 @@
           </div>
         </div>
       </div>
-      <div class="card-body text-center ">
-        <div class="row"><%= post.text%></div>
+      <div class="card-body text-center">
+        <div class="row "><%= post.text%></div>
       </div>
+      <% if post.likes.count > 0 %>
+          <div><i class="fa fa-thumbs-up" aria-hidden="true"><%= post.likes.count %></i></div>
+        <% else %>
+          <div><i class="font font-12">Be first to like it.</i></div>
+        <% end %>
       <div class="card-footer text-center">
         <div class="row">
-          <div class=" col-md-4 border-right">
-            <%= button_to "Like", posts_path(post), { method: :get, class: " btn font font-12  ", disabled: true } %>
+          <div class=" col-md-4 border-right like-p" id="like">
+            <%= button_to "Like", like_post_and_comment_home_path(post.id), class: "btn font font-12 ",id:"like-p", remote: true, params: { likeable_type: "Post", likeable_id: post.id } %>
           </div>
           <div class=" col-md-4 border-right ">
             <button class=" btn font font-12 show-comment-btn" id=<%= post.id%> type="button" >Comment</button>
