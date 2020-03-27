@@ -142,6 +142,10 @@ img {
   margin-left: 48px;
 }
 
+.color-blue {
+  color: blue !important;
+}
+
 .links a {
   margin-left: 2px;
 }

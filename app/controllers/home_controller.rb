@@ -33,6 +33,7 @@ class HomeController < ApplicationController
           format.html { redirect_to root_url, notice: 'like was successfully created.'}
         else
           @message = 'invalid'
+          format.js
           format.html { render 'new', notice: 'Something went wrong.' }
         end
       end
