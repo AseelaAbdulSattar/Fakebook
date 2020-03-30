@@ -8,7 +8,7 @@
       <div class=" comment" data-id="comment<%= comment.id %>">
         <%= comment.body %>
         <% if comment.likes.count > 0 %>
-          <div><i class="fa fa-thumbs-up" aria-hidden="true"><%= comment.likes.count %></i></div>
+          <div> <i class="fa fa-thumbs-up" aria-hidden="true">  <%= comment.likes.count %></i></div>
         <% end %>
         <div class="comment-meta" data-comment-id="<%= comment.id %>">
           <% if liked = Like.find_by( likeable_type: "Comment", likeable_id: comment.id, user: current_user ) != nil %>

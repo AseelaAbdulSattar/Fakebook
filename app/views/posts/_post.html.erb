@@ -29,7 +29,11 @@
         <div class="row "><%= post.text%></div>
       </div>
       <% if post.likes.count > 0 %>
-        <div><i class="fa fa-thumbs-up" aria-hidden="true"><%= post.likes.count %></i></div>
+        <div class="tooltip"><i class="fa fa-thumbs-up" aria-hidden="true"><%= post.likes.count %></i>
+          <% post.likes.each do |like| %>
+            <span class="tooltiptext"><%= like.user.name %></span>
+          <% end %>
+        </div>
       <% else %>
         <div><i class="font font-12">Be first to like it.</i></div>
       <% end %>

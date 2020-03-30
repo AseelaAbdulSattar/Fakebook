@@ -1,7 +1,0 @@
-<% if likeable_type == "Post"%>
-  <% if Like.find_by( likeable_type: "Post", likeable_id: post.id, user: current_user ) != nil %>
-    $("like-post-#{post.id}").addClass("color-blue ");
-  <% else %>
-    $("like-post-#{post.id}").removeClass("color-blue ");
-  <% end %>
-<% end %>
