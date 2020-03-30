@@ -28,15 +28,7 @@ $(document).on("click", ".show-comment-btn", function() {
 $(document).on("click", ".like", function() {
   likeButton = $(this).attr("id");
   console.log(likeButton);
-  $(this).toggleClass("color-blue ");
-  // likeButton.prop("disabled", true);
+  $(this)
+    .toggleClass("color-blue")
+    .toggleClass("color-toggle");
 });
-
-// $(document).ready(function() {
-//   likeButton = $(document).find("#like-post-1");
-//   console.log("likeButton");
-//   likeButton.on("click", () => {
-//     $(likeButton).toggleClass("color-blue ");
-//     // likeButton.prop("disabled", true);
-//   });
-// });

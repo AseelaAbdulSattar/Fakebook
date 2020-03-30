@@ -5,14 +5,14 @@
       <span class="label label-info"><%= comment.user.name %></span> posted <%=time_ago_in_words(comment.created_at)%> ago
     </div>
     <div class="media">
-      <div class=" comment" data-id="comment<%= comment.id %>">
+      <div class="comment" data-id="comment<%= comment.id %>">
         <%= comment.body %>
         <% if comment.likes.count > 0 %>
           <div> <i class="fa fa-thumbs-up" aria-hidden="true">  <%= comment.likes.count %></i></div>
         <% end %>
         <div class="comment-meta" data-comment-id="<%= comment.id %>">
           <% if liked = Like.find_by( likeable_type: "Comment", likeable_id: comment.id, user: current_user ) != nil %>
-            <span><%= link_to "Like", like_post_and_comment_home_path({ id: comment.id, likeable_type: "Comment", likeable_id: comment.id }), method: :post, class: " show-comment color-blue like", id:"like-comment-#{comment.id}", remote: true %></span>
+            <span><%= link_to "Like", like_post_and_comment_home_path({ id: comment.id, likeable_type: "Comment", likeable_id: comment.id }), method: :post, class: " show-comment color-blue color-toggle like", id:"like-comment-#{comment.id}", remote: true %></span>
           <% else %>
             <span><%= link_to "Like", like_post_and_comment_home_path({ id: comment.id, likeable_type: "Comment", likeable_id: comment.id }), method: :post, class: " show-comment like", id:"like-comment-#{comment.id}", remote: true %></span>
           <% end %>
