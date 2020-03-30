@@ -25,6 +25,13 @@ $(document).on("click", ".show-comment-btn", function() {
     }
   });
 });
+$(document).on("click", ".like", function() {
+  likeButton = $(this).attr("id");
+  console.log(likeButton);
+  $(this).toggleClass("color-blue ");
+  // likeButton.prop("disabled", true);
+});
+
 // $(document).ready(function() {
 //   likeButton = $(document).find("#like-post-1");
 //   console.log("likeButton");
@@ -33,9 +40,3 @@ $(document).on("click", ".show-comment-btn", function() {
 //     // likeButton.prop("disabled", true);
 //   });
 // });
-$(document).on("click", ".like", function() {
-  likeButton = $(this).attr("id");
-  console.log(likeButton);
-  $(this).toggleClass("color-blue ");
-  // likeButton.prop("disabled", true);
-});
