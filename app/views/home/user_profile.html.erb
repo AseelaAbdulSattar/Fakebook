@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="d-flex justify-content-center h-100">
+    <div class="card background padding posts box my-2 all-comments-show-hide">
+      <div class="card-header ">
+        <div class="row">
+          <div class="col-md-10">
+            <div class="row">
+              <h6><%= @user.name %></h6>
+            </div>
+            <div class="row">
+              <h6><%= @user.created_at.strftime("%d-%m-%Y")%>, <%=@user.created_at.strftime("%I:%M %p")%></h6>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="dropdown">
+              <a class="test" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
+              <ul class="dropdown-menu box">
+                <li><%= button_to 'Report', edit_post_path(@user), { method: :get, class: 'dropdown-item', disabled: true } %></li>
+                <% if current_user && current_user == @user %>
+                <li><%= link_to 'Edit', edit_post_path(@user), { method: :get, class: 'dropdown-item'} %></li>
+                <li><%= link_to 'Delete', post_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "delete_post dropdown-item" %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body text-center">
+        <div class="row "><%= @user.name%><%= @user.email%></div>
+      </div>
+      <div class="card-footer text-center">
+        <div class="row">
+          <div class="col-md-4 border-right ">
+            <%= button_to "Send Reaquest", like_post_and_comment_home_path(@user), class: "btn font font-12 like color-blue color-toggle", id:"like-post-#{@user.id}", method: :post, remote: true, disabled: true%>
+          </div>
+          <div class="col-md-4 border-right ">
+            <button class="btn font font-12 show-comment-btn" , disabled= "true" id=<%= @user.id%> type="button" >Message</button>
+          </div>
+          <div class="col-md-4 ">
+            <%= button_to "Posts", posts_path(@user), { method: :get, class: "   btn font font-12 "} %>
+          </div>
+        </div>
+			</div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  searchkick word_start: [:email]
   self.per_page = 5
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

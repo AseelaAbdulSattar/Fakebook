@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  searchkick suggest: [:text]
   self.per_page = 10
   belongs_to :user
   has_many :comments, as: :commentable, dependent: :destroy

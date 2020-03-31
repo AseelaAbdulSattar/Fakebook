@@ -8,7 +8,7 @@
           url &&
           $(window).scrollTop() > $(document).height() - $(window).height() - 50
         ) {
-          $(".pagination").text("Loading more products...");
+          $(".pagination").text("Loading...");
           // $(".pagination").html('<img src="/assets/images/ajax-loader.gif" alt="Loading..." title="Loading..." />');
           return $.getScript(url);
         }
