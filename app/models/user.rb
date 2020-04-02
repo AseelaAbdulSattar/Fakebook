@@ -16,6 +16,10 @@ class User < ApplicationRecord
     where.not(id:  ids += user.friends.ids)
   end
 
+  def active_for_authentication?
+    super && state == "active"
+  end
+
   def self.to_csv
     attributes = %w{ name state email total_Friends}
 
@@ -28,8 +32,8 @@ class User < ApplicationRecord
     end
   end
 
-  def friend_with?(other_user)
-    friendships.find_by(friend_id: other_user.id)
+  def friend_with?(user)
+    friendships.find_by(friend_id: user.id)
   end
 
   def total_Friends

@@ -25,17 +25,16 @@ class HomeController < ApplicationController
   def user_profile
     @user = User.find(params[:id])
     friendship = current_user.friend_with? @user
-    if friendship.present? && friendship.status == true
+    @is_friend = "not_requested" and return unless friendship.present?
+
+    if friendship.status
       @is_friend = true
-    elsif friendship.present? && friendship.status == nil
-      @is_friend = false
     else
-      @is_friend = "not_requested"
+      @is_friend = false
     end
   end
 
   def search
-    #@users = User.all.order(:name).page(params[:page])
     id = []
     parent_id = []
     @user_result = User.search(params[:q], load: false, fields: [:email], match: :word_start, misspellings: {edit_distance: 2})
@@ -57,7 +56,6 @@ class HomeController < ApplicationController
 
   def like_post_and_comment
     @like = Like.find_by_likeable_id_and_likeable_type_and_user_id(params[:likeable_id], params[:likeable_type], current_user.id)
-    # @like = Like.where(like_params.merge({ user_id: current_user.id }).first_or_initialize
     respond_to do |format|
       if !@like.present?
         @like = current_user.likes.new(like_params)

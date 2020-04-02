@@ -41,9 +41,9 @@
         <div class="row">
           <div class="col-md-4 border-right ">
             <% if liked = Like.find_by( likeable_type: "Post", likeable_id: post.id, user: current_user ) != nil %>
-              <%= button_to "Like", like_post_and_comment_home_path(post), class: "btn font font-12 like color-blue color-toggle", id:"like-post-#{post.id}", method: :post, remote: true, params: { likeable_type: "Post", likeable_id: post.id }%>
+              <%= button_to "Like", like_post_and_comment_home_path(post), class: "btn font font-12 like color-blue color-toggle a", id:"like-post-#{post.id}", method: :post, remote: true, params: { like: {likeable_type: "Post", likeable_id: post.id } }%>
             <% else %>
-              <%= button_to "Like", like_post_and_comment_home_path(post), class: "btn font font-12 like ", id:"like-post-#{post.id}", method: :post, remote: true, params: { likeable_type: "Post", likeable_id: post.id }%>
+              <%= button_to "Like", like_post_and_comment_home_path(post), class: "btn font font-12 like ", id:"like-post-#{post.id}", method: :post, remote: true, params: { like: { likeable_type: "Post", likeable_id: post.id }}%>
             <% end %>
           </div>
           <div class="col-md-4 border-right ">

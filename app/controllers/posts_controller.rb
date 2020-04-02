@@ -20,7 +20,6 @@ class PostsController < ApplicationController
 	end
 
   def index
-    # @posts = current_user.posts.order(:created_at).page(params[:page])
     @posts = Post.where(user_id: params[:id]).order(:created_at).page(params[:page])
   end
 

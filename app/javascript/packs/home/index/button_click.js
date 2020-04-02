@@ -30,5 +30,6 @@ $(document).on("click", ".like", function() {
   console.log(likeButton);
   $(this)
     .toggleClass("color-blue")
-    .toggleClass("color-toggle");
+    .toggleClass("color-toggle")
+    .toggleClass("a");
 });

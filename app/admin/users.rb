@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
   permit_params :name, :state, :email
-  config.per_page = 10
+  # config.per_page = 10
 
   batch_action :Activate do |ids|
     batch_action_collection.find(ids).each do |user|

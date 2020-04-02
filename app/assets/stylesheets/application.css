@@ -154,8 +154,8 @@ img {
   margin-left: 48px;
 }
 
-.color-blue.color-toggle {
-  color: blue;
+.color-blue.color-toggle.a {
+  color: rgb(52, 118, 199);
 }
 
 .links a {
