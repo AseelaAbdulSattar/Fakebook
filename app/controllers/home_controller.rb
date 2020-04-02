@@ -24,6 +24,14 @@ class HomeController < ApplicationController
 
   def user_profile
     @user = User.find(params[:id])
+    friendship = current_user.friend_with? @user
+    if friendship.present? && friendship.status == true
+      @is_friend = true
+    elsif friendship.present? && friendship.status == nil
+      @is_friend = false
+    else
+      @is_friend = "not_requested"
+    end
   end
 
   def search

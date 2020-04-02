@@ -28,6 +28,10 @@ class User < ApplicationRecord
     end
   end
 
+  def friend_with?(other_user)
+    friendships.find_by(friend_id: other_user.id)
+  end
+
   def total_Friends
     friends.count
   end
