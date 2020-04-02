@@ -132,7 +132,12 @@ img {
 }
 
 .forgot-password {
-  height: 370px;
+  height: 400px;
+  width: 290px;
+}
+
+.reset-password {
+  height: 450px;
   width: 290px;
 }
 
