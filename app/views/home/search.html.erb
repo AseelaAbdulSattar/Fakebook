@@ -1,16 +1,42 @@
-<% if @posts.present? %>
-  <%= render partial: "posts/post", collection:  @posts%>
-<% else %>
-  <p>No POsts found</p>
-<% end %>
-<p>---------USER-------------</p>
-<p>-------------------------------</p>
+<div class="container " >
+	<div class="d-flex justify-content-center h-100">
+		<div class="card background posts wall">
+			<div class="card-body" id="posts">
+					<% if @posts.present? %>
+            <%= render partial: "posts/post", collection:  @posts%>
+          <% else %>
+            <p>No Posts found</p>
+          <% end %>
 
-<p>-------------------------------</p>
-user_profile_home_path(
-<p>-------------------------------</p>
-<% @user_result.each do |u| %>
-  <h6><%= link_to u.name, user_profile_home_path(u.id), { method: :get} %></h6>
-<p>-------------------------------</p>
-<% end %>
+          <% if @comments.present? %>
+            <%= render partial: "posts/post", collection:  @comments%>
+            <%# <% @comments.each do |p|%>
+            <%#= p.commentable_id %>
+            <%#= p.body %>
+            <%# end % > %>
+          <% else %>
+            <p>No Comments found</p>
+          <% end %>
+
+					<div class="row text-center">
+            <% if @user_result.present? %>
+              <% @user_result.each do |u| %>
+                <h6><%= link_to u.name, user_profile_home_path(u.id), { method: :get} %></h6>
+                <div class="row">
+                  <h6><%=u.created_at%></h6>
+                </div>
+              <% end %>
+            <% else %>
+              <p>No Users found</p>
+            <% end %>
+					</div>
+				<div id="infinite-scrolling">
+					<%#= will_paginate @posts %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 

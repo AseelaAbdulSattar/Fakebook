@@ -29,13 +29,21 @@ class HomeController < ApplicationController
   def search
     #@users = User.all.order(:name).page(params[:page])
     id = []
+    parent_id = []
     @user_result = User.search(params[:q], load: false, fields: [:email], match: :word_start, misspellings: {edit_distance: 2})
     post_result = Post.search(params[:q], load: false, fields: [:text], misspellings: {edit_distance: 2}, aggs: [:user_id])
+    comment_result = Comment.search(params[:q], load: false, fields: [:body], misspellings: {edit_distance: 2}, aggs: [:user_id, :post_id])
     if post_result.present?
       post_result.each do |r|
         id << r.id
       end
-      @posts = Post.where(id: id)
+      @posts = Post.where(id: id).paginate(page: params[:page]).order("created_at ASC")
+    end
+    if comment_result.present?
+      comment_result.each do |c|
+        parent_id << c.commentable_id
+      end
+      @comments = Post.where(id: parent_id)
     end
   end
 
