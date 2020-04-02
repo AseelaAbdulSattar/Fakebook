@@ -1,23 +1,16 @@
-<%= @result.response%>
-<p>-------------------------------</p>
-<%= @result.aggs%>
-<p>-------------------------------</p>
-<%= @result.took%>
-<p>-------------------------------</p>
-<% @result.each do |u| %>
-  <%=  u.text%>
-  <%=  u.user_id%>
-<p>-------------------------------</p>
+<% if @posts.present? %>
+  <%= render partial: "posts/post", collection:  @posts%>
+<% else %>
+  <p>No POsts found</p>
 <% end %>
-<p>-------------------------------</p>
 <p>---------USER-------------</p>
 <p>-------------------------------</p>
-<%= @user.response%>
+
 <p>-------------------------------</p>
+user_profile_home_path(
 <p>-------------------------------</p>
-<% @user.each do |u| %>
-  <%=  u.name%>
-  <%=  u.email%>
+<% @user_result.each do |u| %>
+  <h6><%= link_to u.name, user_profile_home_path(u.id), { method: :get} %></h6>
 <p>-------------------------------</p>
 <% end %>
 

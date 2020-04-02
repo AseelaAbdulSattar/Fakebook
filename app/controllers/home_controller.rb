@@ -28,8 +28,15 @@ class HomeController < ApplicationController
 
   def search
     #@users = User.all.order(:name).page(params[:page])
-    @user = User.search(params[:q], load: false, fields: [:email], match: :word_start, misspellings: {edit_distance: 2})
-    @result = Post.search(params[:q], load: false, fields: [:text], misspellings: {edit_distance: 2}, aggs: [:user_id])
+    id = []
+    @user_result = User.search(params[:q], load: false, fields: [:email], match: :word_start, misspellings: {edit_distance: 2})
+    post_result = Post.search(params[:q], load: false, fields: [:text], misspellings: {edit_distance: 2}, aggs: [:user_id])
+    if post_result.present?
+      post_result.each do |r|
+        id << r.id
+      end
+      @posts = Post.where(id: id)
+    end
   end
 
   def like_post_and_comment
