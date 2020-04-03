@@ -15,7 +15,7 @@
             <div class="dropdown">
               <a class="test" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
               <ul class="dropdown-menu box">
-                <li><%= button_to 'Report', edit_post_path(post), { method: :get, class: 'dropdown-item', disabled: true } %></li>
+                <li><%= button_to 'Report', report_home_path(post), method: :post, class: 'dropdown-item', remote: true, params: { report: {reportable_type: "Post", reportable_id: post.id } } %></li>
                 <% if current_user && current_user == post.user %>
                 <li><%= link_to 'Edit', edit_post_path(post), { method: :get, class: 'dropdown-item'} %></li>
                 <li><%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "delete_post dropdown-item" %></li>

@@ -34,6 +34,18 @@ class HomeController < ApplicationController
     end
   end
 
+  def report
+    @report = current_user.reports.new(report_params)
+    respond_to do |format|
+      if @report.save
+        @message = 'success'
+      else
+        @message = 'invalid'
+      end
+      format.js
+    end
+  end
+
   def search
     id = []
     parent_id = []
@@ -55,31 +67,32 @@ class HomeController < ApplicationController
   end
 
   def like_post_and_comment
-    @like = Like.find_by_likeable_id_and_likeable_type_and_user_id(params[:likeable_id], params[:likeable_type], current_user.id)
+    @like = Like.where(like_params.merge({ user_id: current_user.id })).first
     respond_to do |format|
       if !@like.present?
         @like = current_user.likes.new(like_params)
         if (@like.new_record? && @like.save) || (@like.persisted? && @like.save)
           @message = 'success'
-          format.js
         else
           @message = 'invalid'
-          format.js
         end
       else
         if @like.destroy
           @message = 'success'
-          format.js
         else
           @message = 'invalid'
-          format.js
         end
       end
+      format.js
     end
   end
 
   private
   def like_params
     params.require(:like).permit(:user_id, :likeable_type, :likeable_id)
+  end
+
+  def report_params
+    params.require(:report).permit(:user_id, :reportable_type, :reportable_id)
 	end
 end

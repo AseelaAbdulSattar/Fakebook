@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       get :user_profile
       get :post_comments
       post :like_post_and_comment
+      post :report
     end
   end
   resources :friendships do
