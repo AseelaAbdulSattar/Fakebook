@@ -8,7 +8,11 @@
       <div class="comment" data-id="comment<%= comment.id %>">
         <%= comment.body %>
         <% if comment.likes.count > 0 %>
-          <div> <i class="fa fa-thumbs-up" aria-hidden="true">  <%= comment.likes.count %></i></div>
+          <div class="tooltip like-tooltip tooltip-position"> <i class="fa fa-thumbs-up" aria-hidden="true">  <%= comment.likes.count %></i>
+          <% comment.likes.each do |like| %>
+            <span class=" tooltiptext like-tooltip tooltip-position"><%= comment.user.name %></span>
+          <% end %>
+          </div>
         <% end %>
         <div class="comment-meta" data-comment-id="<%= comment.id %>">
           <% if liked = Like.find_by( likeable_type: "Comment", likeable_id: comment.id, user: current_user ) != nil %>
