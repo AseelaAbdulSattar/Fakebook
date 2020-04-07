@@ -15,7 +15,11 @@
             <div class="dropdown">
               <a class="test" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
               <ul class="dropdown-menu box">
-                <li><%= button_to 'Report', report_home_path(post), method: :post, class: 'dropdown-item', remote: true, params: { report: {reportable_type: "Post", reportable_id: post.id } } %></li>
+                <% if reported = Report.find_by( reportable_type: "Post", reportable_id: post.id, user: current_user ) != nil %>
+                  <li><%= button_to 'Report', report_home_path(post), method: :post, class: 'dropdown-item like color-blue color-toggle a', id:"report-post-#{post.id}", remote: true, params: { report: {reportable_type: "Post", reportable_id: post.id } } %></li>
+                <% else %>
+                  <li><%= button_to 'Report', report_home_path(post), method: :post, class: 'dropdown-item like', id:"report-post-#{post.id}", remote: true, params: { report: {reportable_type: "Post", reportable_id: post.id } } %></li>
+                <% end %>
                 <% if current_user && current_user == post.user %>
                 <li><%= link_to 'Edit', edit_post_path(post), { method: :get, class: 'dropdown-item'} %></li>
                 <li><%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "delete_post dropdown-item" %></li>
@@ -41,9 +45,9 @@
         <div class="row">
           <div class="col-md-4 border-right ">
             <% if liked = Like.find_by( likeable_type: "Post", likeable_id: post.id, user: current_user ) != nil %>
-              <%= button_to "Like", like_post_and_comment_home_path(post), class: "btn font font-12 like color-blue color-toggle a", id:"like-post-#{post.id}", method: :post, remote: true, params: { like: {likeable_type: "Post", likeable_id: post.id } }%>
+              <%= button_to "Like", like_post_path(post.id), class: "btn font font-12 like color-blue color-toggle a", id:"like-post-#{post.id}", method: :post, remote: true, params: { like: {likeable_type: "Post", likeable_id: post.id } }%>
             <% else %>
-              <%= button_to "Like", like_post_and_comment_home_path(post), class: "btn font font-12 like ", id:"like-post-#{post.id}", method: :post, remote: true, params: { like: { likeable_type: "Post", likeable_id: post.id }}%>
+              <%= button_to "Like", like_post_path(post.id), class: "btn font font-12 like ", id:"like-post-#{post.id}", method: :post, remote: true, params: { like: { likeable_type: "Post", likeable_id: post.id }}%>
             <% end %>
           </div>
           <div class="col-md-4 border-right ">

@@ -14,5 +14,7 @@ ActiveAdmin.register Report do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+  permit_params :reportable_id, :reportable_type, :user_id
+  config.per_page = 10
+
 end

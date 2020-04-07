@@ -10,13 +10,14 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  *= require font-awesome
+ *= require posts
+ *= require homes
  */
 
 @import "posts";
-@import "home";
+@import "homes";
 
 h1 {
   text-align: center;
@@ -120,6 +121,12 @@ img {
   width: 280px;
 }
 
+.field_with_errors {
+  display: inline;
+  flex: 1 1 auto;
+  border: 1px solid red;
+}
+
 .editUser {
   height: 500px;
   width: 300px;
@@ -133,11 +140,6 @@ img {
 
 .forgot-password {
   height: 400px;
-  width: 290px;
-}
-
-.reset-password {
-  height: 450px;
   width: 290px;
 }
 

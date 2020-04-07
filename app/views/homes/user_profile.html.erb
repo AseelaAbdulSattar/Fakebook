@@ -1,6 +1,6 @@
 <div class="container">
   <div class="d-flex justify-content-center">
-    <div class="card background padding posts box my-2 all-comments-show-hide">
+    <div class="card background padding posts box">
       <div class="card-header">
         <div class="row">
           <div class="col-md-10">
@@ -12,16 +12,7 @@
             </div>
           </div>
           <div class="col-md-2">
-            <div class="dropdown">
-              <a class="test" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
-              <ul class="dropdown-menu box">
-                <li><%= button_to 'Report', edit_post_path(@user), { method: :get, class: 'dropdown-item', disabled: true } %></li>
-                <% if current_user && current_user == @user %>
-                <li><%= link_to 'Edit', edit_post_path(@user), { method: :get, class: 'dropdown-item'} %></li>
-                <li><%= link_to 'Delete', post_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "delete_post dropdown-item" %></li>
-                <% end %>
-              </ul>
-            </div>
+
           </div>
         </div>
       </div>
