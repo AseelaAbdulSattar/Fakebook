@@ -122,3 +122,5 @@ Rails.application.configure do
   #  the idea of Heroku .
   #config.action_mailer.default_url_options = { :host => 'yourhostsite.herokuapp.com' }
 end
+
+
