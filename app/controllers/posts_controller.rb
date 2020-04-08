@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 	end
 
   def index
-    @posts = current_user.posts.order(:created_at).page(params[:page])
+    @posts = Post.where(user_id: params[:id]).order(:created_at).page(params[:page])
   end
 
   def show
@@ -37,6 +37,38 @@ class PostsController < ApplicationController
         flash[:error] = "Something went wrong"
         render 'edit'
       end
+  end
+
+  def post_comments
+    post = Post.find_by_id(params[:id])
+    if post.present?
+      @comments = post.comments
+      render partial: "post_comments"
+		else
+			flash[:error] = "Post with 'Id = #{params[:id]} not available"
+			redirect_to root_url
+    end
+  end
+
+  def like
+    @like = Like.where(like_params.merge({ user_id: current_user.id })).first
+    respond_to do |format|
+      if !@like.present?
+        @like = current_user.likes.new(like_params)
+        if (@like.new_record? && @like.save) || (@like.persisted? && @like.save)
+          @message = 'success'
+        else
+          @message = 'invalid'
+        end
+      else
+        if @like.destroy
+          @message = 'success'
+        else
+          @message = 'invalid'
+        end
+      end
+      format.js
+    end
   end
 
   def destroy
@@ -61,6 +93,10 @@ class PostsController < ApplicationController
 			flash[:error] = "Post with 'Id = #{params[:id]} is not available"
 			redirect_to root_url
     end
+  end
+
+  def like_params
+    params.require(:like).permit(:user_id, :likeable_type, :likeable_id)
   end
 
   def post_params

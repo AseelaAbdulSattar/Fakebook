@@ -1,44 +1,42 @@
   <div class="container">
+  <div class="row">
+    <%= render "devise/shared/error_messages", resource: resource %>
+  </div>
   <div class="d-flex justify-content-center h-100">
     <div class="card background new">
-      <div class="card-header">
-				<h3>Sign up</h3>
-			</div>
+        <div class="card-header">
+          <h3>Sign up</h3>
+        </div>
 
-      <div class="card-body">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|  %>
-          <%= render "devise/shared/error_messages", resource: resource %>
-          <div class="input-group form-group">
-            <%= f.text_field :name, autofocus: true, autocomplete: "Name", class: "form-control", placeholder: "Name" %>
-          </div>
+        <div class="card-body">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|  %>
 
-          <div class="input-group form-group">
-            <%= f.email_field :email, autofocus: true, autocomplete: "Email", class: "form-control", placeholder: "Email" %>
-          </div>
-
-          <div class="field form-group">
-            <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "New Password"  %>
-            <div class="font font-12">
-              <% if @minimum_password_length%>
-                <em>[ Minimum characters: <%= @minimum_password_length %>]</em>
-              <% end %>
+            <div class="input-group form-group">
+              <%= f.text_field :name, autofocus: true, autocomplete: "Name", class: "form-control", placeholder: "Name" %>
             </div>
-          </div>
 
-          <div class=" input-group form-group field">
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm Password"  %>
-          </div>
+            <div class="input-group form-group">
+              <%= f.email_field :email, autofocus: true, autocomplete: "Email", class: "form-control", placeholder: "Email" %>
+            </div>
 
-          <div class="form-group">
-            <%= f.submit "Sign up", class: "btn float-right btn-background blue font font-12"%>
-          </div>
-        <% end %>
+            <div class="input-group form-group">
+              <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "New Password (min. ch: #{@minimum_password_length})"  %>
+            </div>
+
+            <div class=" input-group form-group">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm Password"  %>
+            </div>
+
+            <div class="form-group">
+              <%= f.submit "Sign up", class: "btn float-right btn-background blue font font-12"%>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="card-footer">
+          <%= render "devise/shared/links"%>
+        </div>
+
       </div>
-
-      <div class="card-footer">
-				<%= render "devise/shared/links"%>
-			</div>
-
     </div>
-  </div>
 </div>

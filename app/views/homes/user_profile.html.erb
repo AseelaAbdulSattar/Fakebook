@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <div class="card background padding posts box">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-10">
+            <div class="row">
+              <h6><%= @user.name %></h6>
+            </div>
+            <div class="row">
+              <h6><%= @user.created_at.strftime("%d-%m-%Y")%>, <%=@user.created_at.strftime("%I:%M %p")%></h6>
+            </div>
+          </div>
+          <div class="col-md-2">
+
+          </div>
+        </div>
+      </div>
+      <div class="card-body text-center">
+        <div class="row">Email: <%= @user.email%></div>
+      </div>
+      <div class="card-footer text-center">
+        <div class="row">
+          <div class="col-md-4 border-right ">
+            <% if @user.id == current_user.id %>
+            <p> ... </p>
+            <% end %>
+            <% if @user.id != current_user.id && @is_friend == "not_requested" %>
+              <%= button_to "Send Request", friendships_path(friend_id: @user.id), method: :post, class: "btn font font-12", remote: true%>
+            <% elsif @user.id != current_user.id && @is_friend == false %>
+              <p class= " font font-12"> Already Requested </p>
+            <% elsif @user.id != current_user.id && @is_friend == true %>
+              <p class= " font font-12"> Already Friends </p>
+            <% end %>
+          </div>
+          <div class="col-md-4 border-right ">
+            <button class="btn font font-12 show-comment-btn" , disabled= "true" id=<%= @user.id%> type="button" >Message</button>
+          </div>
+          <div class="col-md-4 ">
+            <%= button_to "Posts", posts_path(@user.id), method: :get, class: "   btn font font-12 ", params: {id: @user.id} %>
+          </div>
+        </div>
+			</div>
+    </div>
+  </div>
+</div>

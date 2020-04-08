@@ -8,7 +8,7 @@ ActiveAdmin.register User do
         user.update(state: 'active')
       end
     end
-    redirect_to collection_path, alert: 'The users have been Activated.'
+    redirect_to collection_path, alert: 'Activated Successfully.'
   end
   batch_action :Deactivate do |ids|
     batch_action_collection.find(ids).each do |user|
@@ -16,7 +16,7 @@ ActiveAdmin.register User do
         user.update(state: 'inactive')
       end
     end
-    redirect_to collection_path, alert: 'The users have been Deactivated.'
+    redirect_to collection_path, alert: 'Deactivated Successfully.'
   end
 
   filter :friends
@@ -36,7 +36,6 @@ ActiveAdmin.register User do
     column "Email", :email
     column "Friends", :friends
     column "Friend Request Sent", :friendships_requests_sent
-    column "Friend Requests Recieved", :friendships_requests_received
     actions
   end
 end

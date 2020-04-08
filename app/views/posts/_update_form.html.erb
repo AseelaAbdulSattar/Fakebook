@@ -1,0 +1,8 @@
+<%= form_for @post do |f| %>
+  <div class="input-group form-group">
+    <%= f.text_area :text, autofocus: true, autocomplete: "text",rows: "4", class: "form-control", placeholder: "Enter text here.." %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Update", class: "btn float-right btn-default btn-background blue font font-12" %>
+  </div>
+<% end %>

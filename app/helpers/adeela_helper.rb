@@ -1,0 +1,2 @@
+module AdeelaHelper
+end

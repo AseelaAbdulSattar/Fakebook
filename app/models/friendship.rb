@@ -1,4 +1,5 @@
 class Friendship < ApplicationRecord
+  searchkick
   belongs_to :user
   belongs_to :friend, class_name: "User"
   belongs_to :friendships_requests_sent, foreign_key: "friend_id", class_name: "User"

@@ -1,21 +1,25 @@
 <div class="container">
   <div class="d-flex justify-content-center h-100">
     <div class="card background padding posts box my-2 all-comments-show-hide">
-      <div class="card-header ">
+      <div class="card-header">
         <div class="row">
           <div class="col-md-10">
             <div class="row">
-              <h6><%= link_to post.user.name, edit_post_path(post), { method: :get} %></h6>
+              <h6><%= link_to post.user.name, user_profile_home_path(post.user.id), { method: :get} %></h6>
             </div>
             <div class="row">
               <h6><%=post.created_at.strftime("%d-%m-%Y")%>, <%=post.created_at.strftime("%I:%M %p")%></h6>
             </div>
           </div>
           <div class="col-md-2">
-            <div class=" dropdown">
+            <div class="dropdown">
               <a class="test" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
               <ul class="dropdown-menu box">
-                <li><%= button_to 'Report', edit_post_path(post), { method: :get, class: 'dropdown-item', disabled: true } %></li>
+                <% if reported = Report.find_by( reportable_type: "Post", reportable_id: post.id, user: current_user ) != nil %>
+                  <li><%= button_to 'Report', report_home_path(post), method: :post, class: 'dropdown-item like color-blue color-toggle a', id:"report-post-#{post.id}", remote: true, params: { report: {reportable_type: "Post", reportable_id: post.id } } %></li>
+                <% else %>
+                  <li><%= button_to 'Report', report_home_path(post), method: :post, class: 'dropdown-item like', id:"report-post-#{post.id}", remote: true, params: { report: {reportable_type: "Post", reportable_id: post.id } } %></li>
+                <% end %>
                 <% if current_user && current_user == post.user %>
                 <li><%= link_to 'Edit', edit_post_path(post), { method: :get, class: 'dropdown-item'} %></li>
                 <li><%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "delete_post dropdown-item" %></li>
@@ -25,18 +29,31 @@
           </div>
         </div>
       </div>
-      <div class="card-body text-center ">
+      <div class="card-body text-center">
         <div class="row"><%= post.text%></div>
       </div>
+      <% if post.likes.count > 0 %>
+        <div class="tooltip like-tooltip tooltip-position"><i class="fa fa-thumbs-up" aria-hidden="true"><%= post.likes.count %></i>
+          <% post.likes.each do |like| %>
+            <span class=" tooltiptext like-tooltip tooltip-position"><%= like.user.name %></span>
+          <% end %>
+        </div>
+      <% else %>
+        <div><i class="font font-12">Be first to like it.</i></div>
+      <% end %>
       <div class="card-footer text-center">
         <div class="row">
-          <div class=" col-md-4 border-right">
-            <%= button_to "Like", posts_path(post), { method: :get, class: " btn font font-12  ", disabled: true } %>
+          <div class="col-md-4 border-right ">
+            <% if liked = Like.find_by( likeable_type: "Post", likeable_id: post.id, user: current_user ) != nil %>
+              <%= button_to "Like", like_post_path(post.id), class: "btn font font-12 like color-blue color-toggle a", id:"like-post-#{post.id}", method: :post, remote: true, params: { like: {likeable_type: "Post", likeable_id: post.id } }%>
+            <% else %>
+              <%= button_to "Like", like_post_path(post.id), class: "btn font font-12 like ", id:"like-post-#{post.id}", method: :post, remote: true, params: { like: { likeable_type: "Post", likeable_id: post.id }}%>
+            <% end %>
           </div>
-          <div class=" col-md-4 border-right ">
-            <button class=" btn font font-12 show-comment-btn" id=<%= post.id%> type="button" >Comment</button>
+          <div class="col-md-4 border-right ">
+            <button class="btn font font-12 show-comment-btn" id=<%= post.id%> type="button" >Comment</button>
           </div>
-          <div class=" col-md-4 ">
+          <div class="col-md-4 ">
             <%= button_to "Share", posts_path(post), { method: :get, class: "   btn font font-12 ", disabled: true} %>
           </div>
         </div>
@@ -45,7 +62,7 @@
         <div class="form-group shadow-textarea">
           <%= render partial: "posts/form_newcomment", locals: {commentable: post, commentable_type: "Post" } %>
         </div>
-        <div class=" row" id="comments_section<%= post.id %>" data-post-id="<%= post.id %>"> </div>
+        <div class="row" id="comments_section<%= post.id %>" data-post-id="<%= post.id %>"> </div>
       </div>
     </div>
   </div>

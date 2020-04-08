@@ -2,16 +2,26 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
-  root to: "home#index"
+  root to: "homes#index"
   direct :homepage do "#{root_url}" end
 
-  resources :home, :posts
+  resources :homes, :posts
   resources :posts, :comments do
     :comments
   end
-  resources :home do
+
+  resources :posts do
     member do
       get :post_comments
+      post :like
+    end
+  end
+
+  get :search, to: "homes#search"
+  resources :homes do
+    member do
+      get :user_profile
+      post :report
     end
   end
   resources :friendships do

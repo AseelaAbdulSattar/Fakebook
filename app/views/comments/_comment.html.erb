@@ -5,15 +5,32 @@
       <span class="label label-info"><%= comment.user.name %></span> posted <%=time_ago_in_words(comment.created_at)%> ago
     </div>
     <div class="media">
-      <div class=" comment" data-id="comment<%= comment.id %>">
+      <div class="comment" data-id="comment<%= comment.id %>">
         <%= comment.body %>
+        <% if comment.likes.count > 0 %>
+          <div class="tooltip like-tooltip tooltip-position"> <i class="fa fa-thumbs-up" aria-hidden="true">  <%= comment.likes.count %></i>
+          <% comment.likes.each do |like| %>
+            <span class=" tooltiptext like-tooltip tooltip-position"><%= comment.user.name %></span>
+          <% end %>
+          </div>
+        <% end %>
         <div class="comment-meta" data-comment-id="<%= comment.id %>">
+          <% if liked = Like.find_by( likeable_type: "Comment", likeable_id: comment.id, user: current_user ) != nil %>
+            <span><%= link_to "Like",  like_post_path(id: comment.id,like: { likeable_type: "Comment", likeable_id: comment.id }), method: :post, class: " show-comment like color-blue color-toggle a", id:"like-comment-#{comment.id}", remote: true %></span>
+          <% else %>
+            <span><%= link_to "Like",  like_post_path(id: comment.id, like: { likeable_type: "Comment", likeable_id: comment.id }), method: :post, class: " show-comment like", id:"like-comment-#{comment.id}", remote: true %></span>
+          <% end %>
           <% if current_user && current_user == comment.user %>
-          <span><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "delete_comment show-comment" %></span>
+            <span><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "delete_comment show-comment" %></span>
+          <% end %>
+          <% if reported = Report.find_by( reportable_type: "Comment", reportable_id: comment.id, user: current_user ) != nil %>
+            <span><%= link_to "Report", report_home_path( id: comment.id, report: { reportable_type: "Comment", reportable_id: comment.id }), method: :post, class: " show-comment like color-blue color-toggle a", id:"report-comment-#{comment.id}", remote: true %></span>
+          <% else %>
+            <span><%= link_to "Report", report_home_path( id: comment.id, report: { reportable_type: "Comment", reportable_id: comment.id }), method: :post, class: " show-comment like", id:"report-comment-#{comment.id}", remote: true %></span>
           <% end %>
           <span><a class="show-comment cursor" role="button" id="commentreply<%= comment.id%>" >Reply</a></span>
           <div class="collapse form-group shadow-textarea comment " data-id="commentreply<%= comment.id %>">
-            <%= render partial: "posts/form_newcomment", locals: {commentable: comment, commentable_type: "Comment" } %>
+            <%= render partial: "posts/form_newcomment", locals: { commentable: comment, commentable_type: "Comment" } %>
           </div>
           <div class="row">
             <% if comment.replies.present?%>
