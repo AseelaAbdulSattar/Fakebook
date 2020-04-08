@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2020_04_03_071646) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.string "author_type"
-    t.integer "author_id"
+    t.bigint "author_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
@@ -42,7 +45,7 @@ ActiveRecord::Schema.define(version: 2020_04_03_071646) do
     t.text "body"
     t.string "commentable_type"
     t.integer "commentable_id"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "parent_id"
@@ -50,8 +53,8 @@ ActiveRecord::Schema.define(version: 2020_04_03_071646) do
   end
 
   create_table "friendships", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "friend_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "friend_id", null: false
     t.boolean "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -63,7 +66,7 @@ ActiveRecord::Schema.define(version: 2020_04_03_071646) do
   create_table "likes", force: :cascade do |t|
     t.integer "likeable_id"
     t.string "likeable_type"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_likes_on_user_id"
@@ -71,7 +74,7 @@ ActiveRecord::Schema.define(version: 2020_04_03_071646) do
 
   create_table "posts", force: :cascade do |t|
     t.string "text"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -80,7 +83,7 @@ ActiveRecord::Schema.define(version: 2020_04_03_071646) do
   create_table "reports", force: :cascade do |t|
     t.integer "reportable_id"
     t.string "reportable_type"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id", "reportable_type", "reportable_id"], name: "index_reports_on_user_id_and_reportable_type_and_reportable_id", unique: true
