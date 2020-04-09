@@ -16,6 +16,13 @@
   width: 100%;
 }
 
+.text.align {
+  word-wrap: break-word;
+  margin-right: 2px;
+  margin-left: 2px;
+  text-align: justify;
+}
+
 .posts.box {
   height: auto;
   width: 480px;
