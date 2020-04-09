@@ -40,9 +40,9 @@ class PostsController < ApplicationController
   end
 
   def post_comments
-    post = Post.find_by_id(params[:id])
-    if post.present?
-      @comments = post.comments
+    @post = Post.find_by_id(params[:id])
+    if @post.present?
+      @comments = @post.comments
       render partial: "post_comments"
 		else
 			flash[:error] = "Post with 'Id = #{params[:id]} not available"

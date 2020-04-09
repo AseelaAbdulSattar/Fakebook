@@ -1,6 +1,7 @@
 var message = "<%= escape_javascript(@message) %>";
 $("#comments__response-text<%= @comment.commentable_id %>").val("");
 if ("<%= @comment.commentable_type %>" == "Post") {
+  $("#comments-text<%= @comment.commentable_id%>").remove();
   $('div[data-post-id="<%= @comment.commentable_id %>"]').append(
     "<%= j render @comment%>"
   );
