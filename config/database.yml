@@ -6,6 +6,8 @@ default: &default
 development:
   <<: *default
   database: fakebook_db_development
+  username: adeelaabdulsattar
+  password: pg123
 
 test:
   <<: *default

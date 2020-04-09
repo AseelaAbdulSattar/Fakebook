@@ -16,9 +16,6 @@
  *= require homes
  */
 
-@import "posts";
-@import "homes";
-
 h1 {
   text-align: center;
 }
