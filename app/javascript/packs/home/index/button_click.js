@@ -32,5 +32,6 @@ $(document).on("click", ".like", function () {
     .toggleClass("color-toggle")
     .toggleClass("a");
   var suffix = likeButton.match(/\d+/);
-  $("#like-text" + suffix).remove();
+  $("#like-text" + suffix).toggle();
+  $("#like-count" + suffix).show();
 });

@@ -3,6 +3,7 @@
     <div class="card background padding posts box my-2 all-comments-show-hide">
       <div class="card-header">
         <div class="row">
+          <% liked = Like.find_by( likeable_type: "Post", likeable_id: post.id, user: current_user ) %>
           <div class="col-md-10">
             <div class="row">
               <h6><%= link_to post.user.name, user_profile_home_path(post.user.id), { method: :get} %></h6>
@@ -33,7 +34,7 @@
         <div class="row text align"><%= post.text%></div>
       </div>
       <% if post.likes.count > 0 %>
-        <div class="tooltip like-tooltip tooltip-position"><i class="fa fa-thumbs-up" aria-hidden="true"><%= post.likes.count %></i>
+        <div class="tooltip like-tooltip tooltip-position" id="like-count<%=post.id%>"><i class="fa fa-thumbs-up" aria-hidden="true"><%= post.likes.count %></i>
           <% post.likes.each do |like| %>
             <span class=" tooltiptext like-tooltip tooltip-position"><%= like.user.name %></span>
           <% end %>
@@ -44,7 +45,7 @@
       <div class="card-footer text-center">
         <div class="row">
           <div class="col-md-4 border-right ">
-            <% if liked = Like.find_by( likeable_type: "Post", likeable_id: post.id, user: current_user ) != nil %>
+            <% if liked != nil %>
               <%= button_to "Like", like_post_path(post.id), class: "btn font font-12 like color-blue color-toggle a", id:"like-post-#{post.id}", method: :post, remote: true, params: { like: {likeable_type: "Post", likeable_id: post.id } }%>
             <% else %>
               <%= button_to "Like", like_post_path(post.id), class: "btn font font-12 like ", id:"like-post-#{post.id}", method: :post, remote: true, params: { like: { likeable_type: "Post", likeable_id: post.id }}%>
