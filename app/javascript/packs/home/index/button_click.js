@@ -27,11 +27,39 @@ $(document).on("click", ".show-comment-btn", function () {
 });
 $(document).on("click", ".like", function () {
   likeButton = $(this).attr("id");
+  liked = $(this).attr("data");
+  is_liked = $(this).hasClass("color-blue");
+  totalLikes = $(this).attr("totalLikes");
+  console.log(liked);
   $(this)
     .toggleClass("color-blue")
     .toggleClass("color-toggle")
     .toggleClass("a");
-  var suffix = likeButton.match(/\d+/);
-  $("#like-text" + suffix).toggle();
-  $("#like-count" + suffix).show();
+  var postID = likeButton.match(/\d+/);
+  if (
+    (is_liked && liked == 1 && totalLikes == 1) ||
+    (liked == 0 && totalLikes == 0)
+  ) {
+    $("#like-text" + postID)
+      .toggleClass("like")
+      .toggleClass("disappear");
+    $("#like-count" + postID)
+      .toggleClass("like")
+      .toggleClass("disappear");
+    if (liked == 0 && totalLikes == 0 && !is_liked) {
+      console.log("uuuuppppp");
+      $("#like-post-count" + postID).html(parseInt(totalLikes) + parseInt(1));
+      $(this).attr("totalLikes", parseInt(totalLikes) + parseInt(1));
+    }
+  } else {
+    if (is_liked) {
+      var updatecount = parseInt(totalLikes) - parseInt(1);
+      $("#like-post-count" + postID).html(updatecount);
+      $(this).attr("totalLikes", updatecount);
+    } else {
+      updatecount = parseInt(totalLikes) + parseInt(1);
+      $("#like-post-count" + postID).html(updatecount);
+      $(this).attr("totalLikes", updatecount);
+    }
+  }
 });
