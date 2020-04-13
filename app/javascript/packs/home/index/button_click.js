@@ -27,38 +27,45 @@ $(document).on("click", ".show-comment-btn", function () {
 });
 $(document).on("click", ".like", function () {
   likeButton = $(this).attr("id");
-  liked = $(this).attr("data");
+  var likeableID = likeButton.match(/\d+/);
   is_liked = $(this).hasClass("color-blue");
   totalLikes = $(this).attr("totalLikes");
-  console.log(liked);
   $(this)
     .toggleClass("color-blue")
     .toggleClass("color-toggle")
     .toggleClass("a");
-  var postID = likeButton.match(/\d+/);
-  if (
-    (is_liked && liked == 1 && totalLikes == 1) ||
-    (liked == 0 && totalLikes == 0)
-  ) {
-    $("#like-text" + postID)
+
+  if (likeButton.includes("post")) {
+    var count = "#like-post-count";
+    var icon = "#like-count";
+    var text = "#like-text";
+  } else if (likeButton.includes("comment")) {
+    var count = "#like-comment-count";
+    var icon = "#like-icon";
+  }
+
+  if ((totalLikes == 1 && is_liked) || totalLikes == 0) {
+    $(text + likeableID)
       .toggleClass("like")
       .toggleClass("disappear");
-    $("#like-count" + postID)
+    $(icon + likeableID)
       .toggleClass("like")
       .toggleClass("disappear");
-    if (liked == 0 && totalLikes == 0 && !is_liked) {
-      console.log("uuuuppppp");
-      $("#like-post-count" + postID).html(parseInt(totalLikes) + parseInt(1));
-      $(this).attr("totalLikes", parseInt(totalLikes) + parseInt(1));
+    if (totalLikes == 1) {
+      $(this).attr("totalLikes", parseInt(totalLikes) - parseInt(1));
+    } else {
+      var updatecount = parseInt(totalLikes) + parseInt(1);
+      $(count + likeableID).html(updatecount);
+      $(this).attr("totalLikes", updatecount);
     }
   } else {
     if (is_liked) {
-      var updatecount = parseInt(totalLikes) - parseInt(1);
-      $("#like-post-count" + postID).html(updatecount);
+      updatecount = parseInt(totalLikes) - parseInt(1);
+      $(count + likeableID).html(updatecount);
       $(this).attr("totalLikes", updatecount);
     } else {
       updatecount = parseInt(totalLikes) + parseInt(1);
-      $("#like-post-count" + postID).html(updatecount);
+      $(count + likeableID).html(updatecount);
       $(this).attr("totalLikes", updatecount);
     }
   }

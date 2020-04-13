@@ -34,7 +34,7 @@
         <div class="row text align"><%= post.text%></div>
       </div>
 
-      <div class="<%= 'like disappear' if post.likes.count == 0 %> tooltip like-tooltip tooltip-position"id="like-count<%=post.id%>"><i class="fa fa-thumbs-up" aria-hidden="true"><div id="like-post-count<%=post.id%>"><%= post.likes.count %></div></i>
+      <div class="<%= ' like disappear' if post.likes.count == 0 %> tooltip like-tooltip tooltip-position" id="like-count<%=post.id%>"><i class="fa fa-thumbs-up" aria-hidden="true"><div class="inline div-inline" id="like-post-count<%=post.id%>"><%= post.likes.count %></div></i>
           <% post.likes.each do |like| %>
             <span class=" tooltiptext like-tooltip tooltip-position"><%= like.user.name %></span>
           <% end %>
@@ -44,7 +44,7 @@
       <div class="card-footer text-center">
         <div class="row">
           <div class="col-md-4 border-right ">
-            <%= button_to "Like", like_post_path(post.id), class: "#{ 'color-blue color-toggle a' if liked != nil } btn font font-12 like ", id:"like-post-#{post.id}", data: "#{ liked != nil ? 1 : 0 } ", totalLikes: "#{ post.likes.count }", method: :post, remote: true, params: { like: { likeable_type: "Post", likeable_id: post.id }}%>
+            <%= button_to "Like", like_post_path(post.id), class: "#{ 'color-blue color-toggle a' if liked != nil } btn font font-12 like ", id:"like-post-#{post.id}", totalLikes: "#{ post.likes.count }", method: :post, remote: true, params: { like: { likeable_type: "Post", likeable_id: post.id }}%>
           </div>
           <div class="col-md-4 border-right ">
             <button class="btn font font-12 show-comment-btn" id=<%= post.id%> type="button" >Comment</button>
