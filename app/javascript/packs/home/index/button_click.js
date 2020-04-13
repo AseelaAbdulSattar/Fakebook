@@ -34,7 +34,7 @@ $(document).on("click", ".like", function () {
     .toggleClass("color-blue")
     .toggleClass("color-toggle")
     .toggleClass("a");
-
+  report = likeButton.includes("report");
   if (likeButton.includes("post")) {
     var count = "#like-post-count";
     var icon = "#like-count";
@@ -44,7 +44,7 @@ $(document).on("click", ".like", function () {
     var icon = "#like-icon";
   }
 
-  if ((totalLikes == 1 && is_liked) || totalLikes == 0) {
+  if ((!report && totalLikes == 1 && is_liked) || totalLikes == 0) {
     $(text + likeableID)
       .toggleClass("like")
       .toggleClass("disappear");
@@ -58,7 +58,7 @@ $(document).on("click", ".like", function () {
       $(count + likeableID).html(updatecount);
       $(this).attr("totalLikes", updatecount);
     }
-  } else {
+  } else if (!report) {
     if (is_liked) {
       updatecount = parseInt(totalLikes) - parseInt(1);
       $(count + likeableID).html(updatecount);
